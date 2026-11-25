@@ -1,0 +1,205 @@
+/* Mamie Créa — aperçu LocWeb. Fond blanc, rose et bleu tirés du logo, fil de broderie en pointillé. */
+:root {
+  --fond: #ffffff;
+  --encre: #2d2635;
+  --doux: #6c6274;
+  --rose: #cf3f76;
+  --rose-fonce: #b02f61;
+  --rose-pale: #fdf1f6;
+  --bleu: #2b73b0;
+  --ciel: #eef5fb;
+  --trait: #ece6ee;
+  --rayon: 20px;
+  --marge: clamp(16px, 5vw, 64px);
+  --titre: 'Grandstander', 'Nunito Sans', system-ui, sans-serif;
+  --main: 'Caveat', cursive;
+}
+* { box-sizing: border-box }
+html { scroll-behavior: smooth; scroll-padding-top: 96px }
+body { margin: 0; background: var(--fond); color: var(--encre); font: 17px/1.6 'Nunito Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden }
+img { max-width: 100%; height: auto; display: block }
+a { color: inherit }
+h1, h2, h3 { font-family: var(--titre); font-weight: 700; line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -.01em }
+p { margin: 0 }
+:focus-visible { outline: 3px solid var(--bleu); outline-offset: 3px; border-radius: 6px }
+
+/* Boutons */
+.bouton { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: 999px; background: var(--rose); color: #fff; text-decoration: none; font-weight: 700; font-size: 16px; border: 2px solid var(--rose); transition: background .2s, border-color .2s, color .2s }
+.bouton:hover { background: var(--rose-fonce); border-color: var(--rose-fonce) }
+.bouton-clair { background: #fff; color: var(--encre); border-color: var(--trait) }
+.bouton-clair:hover { background: var(--rose-pale); border-color: var(--rose-pale); color: var(--encre) }
+.bouton svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round }
+.bouton-petit { padding: 9px 16px; font-size: 14.5px }
+.actions { display: flex; flex-wrap: wrap; gap: 12px }
+
+/* En-tête */
+.tete { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 28px; padding: 8px var(--marge); background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s }
+.tete.colle { border-bottom-color: var(--trait) }
+.logo img { height: 80px; width: auto }
+.menu { display: flex; gap: 26px; margin-left: auto }
+.menu a { text-decoration: none; font-weight: 600; font-size: 15.5px; padding: 6px 0; border-bottom: 2px solid transparent }
+.menu a:hover { border-bottom: 2px dashed var(--rose) }
+.burger { display: none }
+
+/* Accueil : en-tête de page */
+.hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(28px, 5vw, 64px) var(--marge) clamp(36px, 5vw, 72px) }
+.surtitre { text-transform: uppercase; letter-spacing: .14em; font-size: 13px; font-weight: 700; color: var(--bleu); margin-bottom: 14px }
+.hero h1 { font-size: clamp(38px, 5.4vw, 68px) }
+.main { font-family: var(--main); color: var(--rose); font-size: 1.18em; font-weight: 600; letter-spacing: 0; white-space: nowrap }
+.hero-chapo { margin: 22px 0 28px; font-size: clamp(17px, 1.4vw, 19px); color: var(--doux); max-width: 56ch }
+.promesses { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; padding: 0; margin: 28px 0 0; font-size: 15px; font-weight: 600 }
+.promesses li { display: flex; align-items: center; gap: 8px }
+.promesses li::before { content: ''; width: 14px; border-top: 2px dashed var(--rose) }
+.hero-photo { margin: 0; position: relative }
+.hero-photo img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 30% 50%; border-radius: var(--rayon); position: relative; z-index: 1 }
+.hero-photo::before { content: ''; position: absolute; inset: 14px -14px -14px 14px; border: 2px dashed var(--rose); border-radius: calc(var(--rayon) + 4px) }
+.hero-photo figcaption { position: absolute; z-index: 2; left: 18px; bottom: 18px; background: #fff; border-radius: 999px; padding: 6px 14px; font-family: var(--main); font-size: 21px; color: var(--rose) }
+
+/* Bandeau Noël */
+.bandeau-noel { display: flex; align-items: center; gap: 16px; margin: 0 var(--marge); padding: 12px 20px 12px 12px; background: var(--ciel); border-radius: var(--rayon); text-decoration: none; font-size: 16px }
+.bandeau-noel img { width: 56px; height: 56px; object-fit: cover; border-radius: 14px; flex: none }
+.bandeau-noel b { font-family: var(--titre); color: var(--bleu); margin-right: 6px }
+.bandeau-noel .fleche { margin-left: auto; font-size: 22px; color: var(--bleu); transition: transform .2s }
+.bandeau-noel:hover .fleche { transform: translateX(4px) }
+
+/* Titres de section : un point de broderie dessous */
+.titre-section { max-width: 64ch; margin-bottom: clamp(24px, 3vw, 36px) }
+.titre-section h2 { font-size: clamp(30px, 3.6vw, 44px); display: inline-block; background-image: linear-gradient(90deg, var(--rose) 50%, transparent 50%); background-size: 12px 2px; background-repeat: repeat-x; background-position: 0 100%; padding-bottom: 12px }
+.titre-section p { margin-top: 14px; color: var(--doux) }
+section { scroll-margin-top: 90px }
+
+/* Créations */
+.creations { padding: clamp(48px, 7vw, 96px) var(--marge) clamp(24px, 4vw, 48px) }
+.filtres { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px }
+.pastille { font: inherit; font-size: 15px; font-weight: 600; padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--trait); background: #fff; color: var(--encre); cursor: pointer; transition: background .2s, border-color .2s, color .2s }
+.pastille:hover { border-color: var(--rose) }
+.pastille.actif { background: var(--encre); border-color: var(--encre); color: #fff }
+.grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: clamp(18px, 2.4vw, 30px) }
+.carte { display: flex; flex-direction: column }
+.carte[hidden] { display: none }
+.carte-photo { display: block; overflow: hidden; border-radius: var(--rayon); background: var(--rose-pale) }
+.carte-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .5s }
+.carte:hover .carte-photo img { transform: scale(1.04) }
+.carte-corps { padding: 14px 4px 0 }
+.carte-rubrique { font-size: 12.5px; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; color: var(--bleu) }
+.carte h3 { font-size: 19px; margin: 6px 0 6px; font-weight: 600 }
+.carte h3 a { text-decoration: none }
+.carte h3 a:hover { color: var(--rose) }
+.carte-prix { font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums }
+.carte-prix s, .fiche-prix s { color: var(--doux); font-weight: 400; margin-right: 4px }
+
+/* Étapes */
+.etapes { margin: clamp(32px, 5vw, 64px) var(--marge); padding: clamp(32px, 5vw, 64px); background: var(--rose-pale); border-radius: calc(var(--rayon) + 8px) }
+.etapes-liste { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px) }
+.etape-num { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 2px dashed var(--rose); font-family: var(--titre); font-size: 20px; color: var(--rose); margin-bottom: 14px; background: #fff }
+.etapes-liste h3 { font-size: 21px; margin-bottom: 8px; font-weight: 600 }
+.etapes-liste p { color: var(--doux) }
+.etapes-note { margin-top: 30px; font-weight: 600 }
+.etapes-note a { color: var(--rose-fonce) }
+
+/* Histoire */
+.histoire { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(48px, 7vw, 96px) var(--marge) }
+.histoire-image { margin: 0; background: var(--ciel); border-radius: calc(var(--rayon) + 8px); padding: clamp(16px, 3vw, 36px) }
+.histoire h2 { font-size: clamp(30px, 3.6vw, 44px); margin-bottom: 20px }
+.histoire-texte p + p { margin-top: 14px }
+.histoire-texte p { max-width: 60ch }
+.signature { font-family: var(--main); font-size: 28px; color: var(--rose); margin-top: 18px !important }
+
+/* Avis */
+.avis { padding: clamp(32px, 5vw, 64px) var(--marge) }
+.avis-grille { columns: 3 280px; column-gap: clamp(18px, 2.4vw, 28px) }
+.avis-carte { break-inside: avoid; margin: 0 0 clamp(18px, 2.4vw, 28px); padding: 24px; border: 1.5px solid var(--trait); border-radius: var(--rayon) }
+.avis-carte blockquote { margin: 0; font-size: 16.5px }
+.avis-carte blockquote::before { content: '“'; display: block; font-family: var(--titre); font-size: 44px; line-height: .8; color: var(--rose); margin-bottom: 4px }
+.avis-carte figcaption { margin-top: 14px; font-weight: 700; font-size: 15px }
+.avis-carte figcaption::after { content: ' · sur Facebook'; font-weight: 400; color: var(--doux) }
+.avis-note { margin-top: 8px; color: var(--doux) }
+
+/* Contact */
+.contact { padding: clamp(32px, 5vw, 64px) var(--marge) clamp(64px, 8vw, 110px) }
+.contact-liens { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px }
+.contact-lien { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: var(--rayon); background: var(--ciel); text-decoration: none; font-weight: 700; transition: background .2s }
+.contact-lien:hover { background: var(--rose-pale) }
+.contact-lien svg { width: 26px; height: 26px; flex: none; fill: none; stroke: var(--bleu); stroke-width: 1.6; stroke-linejoin: round }
+.contact-lien small { display: block; font-size: 12.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--doux); font-weight: 700 }
+.contact-lieu { margin-top: 18px; color: var(--doux) }
+
+/* Fiche création */
+.fil { padding: 18px var(--marge) 0; font-size: 14.5px; color: var(--doux) }
+.fil a { color: var(--rose-fonce) }
+.fiche { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); padding: 20px var(--marge) clamp(32px, 5vw, 64px); align-items: start }
+.fiche-photos { position: sticky; top: 100px }
+.fiche-grande { margin: 0; border-radius: var(--rayon); overflow: hidden; background: var(--rose-pale) }
+.fiche-grande img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover }
+.fiche-vignettes { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap }
+.vignette { padding: 0; border: 2px solid transparent; border-radius: 12px; overflow: hidden; cursor: pointer; background: none; width: 72px }
+.vignette img { width: 100%; aspect-ratio: 1; object-fit: cover }
+.vignette.actif { border-color: var(--rose) }
+.fiche h1 { font-size: clamp(30px, 3.4vw, 44px); margin: 8px 0 12px }
+.fiche-prix { font-size: 26px; font-weight: 700; margin-bottom: 22px; font-variant-numeric: tabular-nums }
+.fiche-paiement { margin-top: 14px; font-size: 14.5px; color: var(--doux) }
+.fiche-description { margin-top: 30px; padding-top: 26px; border-top: 2px dashed var(--trait) }
+.fiche-description p { margin-bottom: 14px; max-width: 62ch }
+.fiche-chapo { font-size: 19px; font-weight: 600 }
+.points { padding: 0; margin: 0 0 16px; list-style: none; display: grid; gap: 8px }
+.points li { padding-left: 24px; position: relative }
+.points li::before { content: ''; position: absolute; left: 0; top: .8em; width: 12px; border-top: 2px dashed var(--rose) }
+.creations-autres { padding-top: 0 }
+
+/* Pied */
+.pied { background: var(--encre); color: #e9e3ec; padding: clamp(40px, 6vw, 64px) var(--marge) 24px }
+.pied-haut { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 32px; align-items: start }
+.pied-nom { font-family: var(--titre); font-size: 26px; color: #fff; margin-bottom: 8px }
+.pied nav { display: grid; gap: 8px }
+.pied nav a { text-decoration: none }
+.pied nav a:hover { color: #fff; text-decoration: underline dashed }
+.pied-reseaux { display: flex; gap: 10px }
+.pied-reseaux a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.3) }
+.pied-reseaux a:hover { background: var(--rose); border-color: var(--rose) }
+.pied-reseaux svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linejoin: round }
+.pied-bas { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: 14px; color: #b9b0bf }
+
+/* Bouton WhatsApp flottant */
+.flottant { position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: #25d366; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.18) }
+.flottant svg { width: 30px; height: 30px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linejoin: round }
+
+/* Apparition au défilement */
+.js .revele { opacity: 0; transform: translateY(18px); transition: opacity .6s, transform .6s }
+.js .revele.vu { opacity: 1; transform: none }
+
+@media (max-width: 1000px) {
+  .hero, .histoire, .fiche { grid-template-columns: 1fr }
+  .hero-photo { order: -1 }
+  .hero-photo img { aspect-ratio: 4 / 3 }
+  .fiche-photos { position: static }
+  .etapes-liste { grid-template-columns: 1fr }
+  .pied-haut { grid-template-columns: 1fr }
+  .histoire-image { max-width: 520px }
+}
+@media (max-width: 860px) {
+  .tete { gap: 12px }
+  .logo img { height: 56px }
+  .tete-wa { margin-left: auto }
+  .burger { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; padding: 0 }
+  .burger span, .burger span::before, .burger span::after { display: block; width: 22px; height: 2px; background: var(--encre); position: relative; content: '' }
+  .burger span::before { position: absolute; top: -7px }
+  .burger span::after { position: absolute; top: 7px }
+  .menu { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; margin: 0; padding: 8px var(--marge) 18px; background: #fff; border-bottom: 1px solid var(--trait); display: none }
+  .menu.ouvert { display: flex }
+  .menu a { padding: 12px 0; font-size: 18px }
+}
+@media (max-width: 560px) {
+  .tete-wa span { display: none }
+  .tete-wa { padding: 10px }
+  .grille { grid-template-columns: repeat(2, 1fr); gap: 14px }
+  .carte h3 { font-size: 16px }
+  .carte-rubrique { font-size: 11px }
+  .hero-photo::before { inset: 10px -8px -10px 10px }
+  .bandeau-noel { font-size: 15px }
+  .main { white-space: normal }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto }
+  .js .revele { opacity: 1; transform: none; transition: none }
+  .carte-photo img, .bandeau-noel .fleche { transition: none }
+}
