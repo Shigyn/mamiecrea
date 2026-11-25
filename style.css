@@ -1,142 +1,162 @@
-/* Mamie Créa — aperçu LocWeb. Fond blanc, rose et bleu tirés du logo, fil de broderie en pointillé. */
+/* Mamie Créa — aperçu LocWeb. Couleurs pastel qu'elle aime (lilas, rose, ciel, menthe, pêche, citron),
+   rose et bleu de son logo, Pacifico en touche, fil de broderie en pointillé. */
 :root {
-  --fond: #ffffff;
-  --encre: #2d2635;
-  --doux: #6c6274;
-  --rose: #cf3f76;
-  --rose-fonce: #b02f61;
-  --rose-pale: #fdf1f6;
+  --fond: #fffcfe;
+  --encre: #3d2649;
+  --doux: #6e5a78;
+  --rose: #e0498a;
+  --rose-fonce: #c23573;
   --bleu: #2b73b0;
-  --ciel: #eef5fb;
-  --trait: #ece6ee;
-  --rayon: 20px;
+  --lilas: #f1e6fd;
+  --rose-pale: #ffe6f0;
+  --ciel: #e2f0fc;
+  --menthe: #dff4ea;
+  --peche: #ffe9dc;
+  --citron: #fff4cc;
+  --trait: #eadff0;
+  --rayon: 22px;
   --marge: clamp(16px, 5vw, 64px);
   --titre: 'Grandstander', 'Nunito Sans', system-ui, sans-serif;
-  --main: 'Caveat', cursive;
+  --main: 'Pacifico', cursive;
 }
 * { box-sizing: border-box }
 html { scroll-behavior: smooth; scroll-padding-top: 96px }
 body { margin: 0; background: var(--fond); color: var(--encre); font: 17px/1.6 'Nunito Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden }
+body.fige { overflow: hidden }
 img { max-width: 100%; height: auto; display: block }
 a { color: inherit }
 h1, h2, h3 { font-family: var(--titre); font-weight: 700; line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -.01em }
 p { margin: 0 }
-:focus-visible { outline: 3px solid var(--bleu); outline-offset: 3px; border-radius: 6px }
+:focus-visible { outline: 3px solid var(--bleu); outline-offset: 3px; border-radius: 8px }
+[hidden] { display: none !important }
+
+.teinte-rose { --teinte: var(--rose-pale) } .teinte-ciel { --teinte: var(--ciel) } .teinte-lilas { --teinte: var(--lilas) }
+.teinte-menthe { --teinte: var(--menthe) } .teinte-peche { --teinte: var(--peche) } .teinte-citron { --teinte: var(--citron) }
 
 /* Boutons */
-.bouton { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: 999px; background: var(--rose); color: #fff; text-decoration: none; font-weight: 700; font-size: 16px; border: 2px solid var(--rose); transition: background .2s, border-color .2s, color .2s }
+.bouton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; border-radius: 999px; background: var(--rose); color: #fff; text-decoration: none; font: 700 16px/1.2 'Nunito Sans', system-ui, sans-serif; border: 2px solid var(--rose); cursor: pointer; transition: background .2s, border-color .2s, transform .15s }
 .bouton:hover { background: var(--rose-fonce); border-color: var(--rose-fonce) }
+.bouton:active { transform: scale(.98) }
 .bouton-clair { background: #fff; color: var(--encre); border-color: var(--trait) }
-.bouton-clair:hover { background: var(--rose-pale); border-color: var(--rose-pale); color: var(--encre) }
-.bouton svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round }
-.bouton-petit { padding: 9px 16px; font-size: 14.5px }
+.bouton-clair:hover { background: var(--rose-pale); border-color: var(--rose-pale) }
+.bouton-petit { padding: 8px 16px; font-size: 14.5px }
+.bouton-grand { padding: 16px 28px; font-size: 17px }
+.bouton-wa { background: #1faa59; border-color: #1faa59 }
+.bouton-wa:hover { background: #178a48; border-color: #178a48 }
 .actions { display: flex; flex-wrap: wrap; gap: 12px }
 
 /* En-tête */
-.tete { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 28px; padding: 8px var(--marge); background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s }
+.tete { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 24px; padding: 6px var(--marge); background: rgba(255,252,254,.94); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s }
 .tete.colle { border-bottom-color: var(--trait) }
-.logo img { height: 80px; width: auto }
-.menu { display: flex; gap: 26px; margin-left: auto }
-.menu a { text-decoration: none; font-weight: 600; font-size: 15.5px; padding: 6px 0; border-bottom: 2px solid transparent }
+.logo img { height: 78px; width: auto }
+.menu { display: flex; gap: 24px; margin-left: auto }
+.menu a { text-decoration: none; font-weight: 700; font-size: 15.5px; padding: 6px 0; border-bottom: 2px solid transparent }
 .menu a:hover { border-bottom: 2px dashed var(--rose) }
+.bouton-panier { position: relative; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--rose-pale); cursor: pointer; color: var(--rose-fonce) }
+.bouton-panier svg, .panier-flottant svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round }
+.pastille-nb { position: absolute; top: -2px; right: -2px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--rose); color: #fff; font-size: 12.5px; font-weight: 700; display: grid; place-items: center }
 .burger { display: none }
 
-/* Accueil : en-tête de page */
-.hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(28px, 5vw, 64px) var(--marge) clamp(36px, 5vw, 72px) }
+/* Accueil */
+.hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(28px, 5vw, 64px); align-items: center; margin: 8px var(--marge) 0; padding: clamp(28px, 4.5vw, 60px); border-radius: calc(var(--rayon) + 10px); background:
+  radial-gradient(circle at 8% 18%, #fff 0 5px, transparent 6px), radial-gradient(circle at 46% 9%, #ffd2e4 0 7px, transparent 8px),
+  radial-gradient(circle at 40% 88%, #cfe6fb 0 9px, transparent 10px), radial-gradient(circle at 4% 82%, #ffe3a8 0 6px, transparent 7px),
+  linear-gradient(135deg, #efe2fd 0%, #fde3ef 100%) }
 .surtitre { text-transform: uppercase; letter-spacing: .14em; font-size: 13px; font-weight: 700; color: var(--bleu); margin-bottom: 14px }
-.hero h1 { font-size: clamp(38px, 5.4vw, 68px) }
-.main { font-family: var(--main); color: var(--rose); font-size: 1.18em; font-weight: 600; letter-spacing: 0; white-space: nowrap }
-.hero-chapo { margin: 22px 0 28px; font-size: clamp(17px, 1.4vw, 19px); color: var(--doux); max-width: 56ch }
-.promesses { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; padding: 0; margin: 28px 0 0; font-size: 15px; font-weight: 600 }
-.promesses li { display: flex; align-items: center; gap: 8px }
-.promesses li::before { content: ''; width: 14px; border-top: 2px dashed var(--rose) }
+.hero h1 { font-size: clamp(38px, 5vw, 64px) }
+.main { font-family: var(--main); font-weight: 400; color: var(--rose); font-size: .92em; letter-spacing: 0; white-space: nowrap }
+.hero-chapo { margin: 22px 0 28px; font-size: clamp(17px, 1.4vw, 19px); color: var(--doux); max-width: 54ch }
 .hero-photo { margin: 0; position: relative }
-.hero-photo img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 30% 50%; border-radius: var(--rayon); position: relative; z-index: 1 }
-.hero-photo::before { content: ''; position: absolute; inset: 14px -14px -14px 14px; border: 2px dashed var(--rose); border-radius: calc(var(--rayon) + 4px) }
-.hero-photo figcaption { position: absolute; z-index: 2; left: 18px; bottom: 18px; background: #fff; border-radius: 999px; padding: 6px 14px; font-family: var(--main); font-size: 21px; color: var(--rose) }
+.hero-photo img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 30% 50%; border-radius: var(--rayon); position: relative; z-index: 1; border: 6px solid #fff; box-shadow: 0 18px 40px rgba(110, 60, 130, .16) }
+.hero-photo::before { content: ''; position: absolute; inset: 16px -14px -14px 16px; border: 2px dashed var(--rose); border-radius: calc(var(--rayon) + 4px) }
+.hero-photo figcaption { position: absolute; z-index: 2; left: 22px; bottom: 22px; background: #fff; border-radius: 999px; padding: 4px 16px 8px; font-family: var(--main); font-size: 17px; color: var(--rose) }
 
-/* Bandeau Noël */
-.bandeau-noel { display: flex; align-items: center; gap: 16px; margin: 0 var(--marge); padding: 12px 20px 12px 12px; background: var(--ciel); border-radius: var(--rayon); text-decoration: none; font-size: 16px }
+.bandeau-noel { display: flex; align-items: center; gap: 16px; margin: 22px var(--marge) 0; padding: 12px 20px 12px 12px; background: var(--menthe); border-radius: var(--rayon); text-decoration: none; font-size: 16px }
 .bandeau-noel img { width: 56px; height: 56px; object-fit: cover; border-radius: 14px; flex: none }
-.bandeau-noel b { font-family: var(--titre); color: var(--bleu); margin-right: 6px }
-.bandeau-noel .fleche { margin-left: auto; font-size: 22px; color: var(--bleu); transition: transform .2s }
+.bandeau-noel b { font-family: var(--titre); color: #1d7a4e; margin-right: 6px }
+.bandeau-noel .fleche { margin-left: auto; font-size: 22px; color: #1d7a4e; transition: transform .2s }
 .bandeau-noel:hover .fleche { transform: translateX(4px) }
 
-/* Titres de section : un point de broderie dessous */
-.titre-section { max-width: 64ch; margin-bottom: clamp(24px, 3vw, 36px) }
+/* Titres de section */
+.titre-section { max-width: 64ch; margin-bottom: clamp(22px, 3vw, 34px) }
 .titre-section h2 { font-size: clamp(30px, 3.6vw, 44px); display: inline-block; background-image: linear-gradient(90deg, var(--rose) 50%, transparent 50%); background-size: 12px 2px; background-repeat: repeat-x; background-position: 0 100%; padding-bottom: 12px }
 .titre-section p { margin-top: 14px; color: var(--doux) }
 section { scroll-margin-top: 90px }
 
 /* Créations */
-.creations { padding: clamp(48px, 7vw, 96px) var(--marge) clamp(24px, 4vw, 48px) }
+.creations { padding: clamp(48px, 7vw, 88px) var(--marge) clamp(24px, 4vw, 48px) }
 .filtres { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px }
-.pastille { font: inherit; font-size: 15px; font-weight: 600; padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--trait); background: #fff; color: var(--encre); cursor: pointer; transition: background .2s, border-color .2s, color .2s }
+.pastille { font: inherit; font-size: 15px; font-weight: 700; padding: 8px 16px; border-radius: 999px; border: 2px solid transparent; background: var(--lilas); color: var(--encre); cursor: pointer; transition: border-color .2s, background .2s, color .2s }
+.pastille-rose { background: var(--rose-pale) } .pastille-ciel { background: var(--ciel) } .pastille-lilas { background: var(--lilas) }
+.pastille-menthe { background: var(--menthe) } .pastille-peche { background: var(--peche) } .pastille-citron { background: var(--citron) }
 .pastille:hover { border-color: var(--rose) }
-.pastille.actif { background: var(--encre); border-color: var(--encre); color: #fff }
-.grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: clamp(18px, 2.4vw, 30px) }
-.carte { display: flex; flex-direction: column }
-.carte[hidden] { display: none }
-.carte-photo { display: block; overflow: hidden; border-radius: var(--rayon); background: var(--rose-pale) }
-.carte-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .5s }
-.carte:hover .carte-photo img { transform: scale(1.04) }
-.carte-corps { padding: 14px 4px 0 }
-.carte-rubrique { font-size: 12.5px; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; color: var(--bleu) }
-.carte h3 { font-size: 19px; margin: 6px 0 6px; font-weight: 600 }
+.pastille.actif { background: var(--encre); color: #fff }
+.grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: clamp(16px, 2.2vw, 26px) }
+.carte { display: flex; flex-direction: column; background: var(--teinte, var(--lilas)); border-radius: var(--rayon); padding: 10px; transition: transform .25s, box-shadow .25s }
+.carte:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(110, 60, 130, .12) }
+.carte-photo { display: block; overflow: hidden; border-radius: calc(var(--rayon) - 8px); background: #fff }
+.carte-photo img { width: 100%; aspect-ratio: 1; object-fit: cover }
+.carte-corps { padding: 12px 6px 4px; display: flex; flex-direction: column; flex: 1 }
+.carte-rubrique { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; color: var(--doux) }
+.carte h3 { font-size: 18px; margin: 4px 0 12px; font-weight: 600 }
 .carte h3 a { text-decoration: none }
-.carte h3 a:hover { color: var(--rose) }
-.carte-prix { font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums }
-.carte-prix s, .fiche-prix s { color: var(--doux); font-weight: 400; margin-right: 4px }
+.carte-bas { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px }
+.carte-prix { font-weight: 800; font-size: 18px; font-variant-numeric: tabular-nums }
+.carte-prix s, .fiche-prix s { color: var(--doux); font-weight: 400; margin-right: 4px; font-size: .85em }
+
+/* Tissus */
+.tissus { padding: clamp(32px, 5vw, 64px) var(--marge); background: var(--ciel) }
+.tissus-ruban { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 10px }
+.tissus-ruban figure { margin: 0; background: #fff; border-radius: 14px; padding: 5px 5px 2px; text-align: center }
+.tissus-ruban img { border-radius: 10px; width: 100%; aspect-ratio: 1; object-fit: cover }
+.tissus-ruban figcaption { font-size: 13px; font-weight: 700; color: var(--doux); padding: 2px 0 }
 
 /* Étapes */
-.etapes { margin: clamp(32px, 5vw, 64px) var(--marge); padding: clamp(32px, 5vw, 64px); background: var(--rose-pale); border-radius: calc(var(--rayon) + 8px) }
+.etapes { margin: clamp(40px, 6vw, 80px) var(--marge); padding: clamp(32px, 5vw, 60px); background: var(--rose-pale); border-radius: calc(var(--rayon) + 10px) }
 .etapes-liste { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px) }
-.etape-num { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 2px dashed var(--rose); font-family: var(--titre); font-size: 20px; color: var(--rose); margin-bottom: 14px; background: #fff }
-.etapes-liste h3 { font-size: 21px; margin-bottom: 8px; font-weight: 600 }
+.etape-num { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; border: 2px dashed var(--rose); font-family: var(--titre); font-size: 21px; color: var(--rose); margin-bottom: 14px; background: #fff }
+.etapes-liste h3 { font-size: 22px; margin-bottom: 8px }
 .etapes-liste p { color: var(--doux) }
-.etapes-note { margin-top: 30px; font-weight: 600 }
-.etapes-note a { color: var(--rose-fonce) }
 
 /* Histoire */
-.histoire { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(48px, 7vw, 96px) var(--marge) }
-.histoire-image { margin: 0; background: var(--ciel); border-radius: calc(var(--rayon) + 8px); padding: clamp(16px, 3vw, 36px) }
+.histoire { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(32px, 5vw, 64px) var(--marge) clamp(48px, 7vw, 88px) }
+.histoire-image { margin: 0; background: var(--lilas); border-radius: calc(var(--rayon) + 10px); padding: clamp(16px, 3vw, 36px) }
 .histoire h2 { font-size: clamp(30px, 3.6vw, 44px); margin-bottom: 20px }
 .histoire-texte p + p { margin-top: 14px }
 .histoire-texte p { max-width: 60ch }
-.signature { font-family: var(--main); font-size: 28px; color: var(--rose); margin-top: 18px !important }
+.signature { font-family: var(--main); font-size: 24px; color: var(--rose); margin-top: 18px !important }
 
 /* Avis */
-.avis { padding: clamp(32px, 5vw, 64px) var(--marge) }
-.avis-grille { columns: 3 280px; column-gap: clamp(18px, 2.4vw, 28px) }
-.avis-carte { break-inside: avoid; margin: 0 0 clamp(18px, 2.4vw, 28px); padding: 24px; border: 1.5px solid var(--trait); border-radius: var(--rayon) }
+.avis { padding: clamp(40px, 6vw, 72px) var(--marge); background: var(--lilas) }
+.avis-grille { columns: 3 280px; column-gap: 20px }
+.avis-carte { break-inside: avoid; margin: 0 0 20px; padding: 24px; background: #fff; border-radius: var(--rayon) }
 .avis-carte blockquote { margin: 0; font-size: 16.5px }
-.avis-carte blockquote::before { content: '“'; display: block; font-family: var(--titre); font-size: 44px; line-height: .8; color: var(--rose); margin-bottom: 4px }
+.avis-carte blockquote::before { content: '❤'; display: block; color: var(--rose); margin-bottom: 6px; font-size: 18px }
 .avis-carte figcaption { margin-top: 14px; font-weight: 700; font-size: 15px }
 .avis-carte figcaption::after { content: ' · sur Facebook'; font-weight: 400; color: var(--doux) }
-.avis-note { margin-top: 8px; color: var(--doux) }
 
 /* Contact */
-.contact { padding: clamp(32px, 5vw, 64px) var(--marge) clamp(64px, 8vw, 110px) }
+.contact { padding: clamp(48px, 6vw, 80px) var(--marge) clamp(80px, 9vw, 120px) }
 .contact-liens { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px }
-.contact-lien { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: var(--rayon); background: var(--ciel); text-decoration: none; font-weight: 700; transition: background .2s }
-.contact-lien:hover { background: var(--rose-pale) }
-.contact-lien svg { width: 26px; height: 26px; flex: none; fill: none; stroke: var(--bleu); stroke-width: 1.6; stroke-linejoin: round }
+.contact-lien { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: var(--rayon); background: var(--teinte); text-decoration: none; font-weight: 700; transition: transform .2s }
+.contact-lien:hover { transform: translateY(-2px) }
+.contact-lien svg { width: 26px; height: 26px; flex: none; fill: none; stroke: var(--encre); stroke-width: 1.6; stroke-linejoin: round }
 .contact-lien small { display: block; font-size: 12.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--doux); font-weight: 700 }
 .contact-lieu { margin-top: 18px; color: var(--doux) }
 
 /* Fiche création */
 .fil { padding: 18px var(--marge) 0; font-size: 14.5px; color: var(--doux) }
 .fil a { color: var(--rose-fonce) }
-.fiche { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); padding: 20px var(--marge) clamp(32px, 5vw, 64px); align-items: start }
-.fiche-photos { position: sticky; top: 100px }
-.fiche-grande { margin: 0; border-radius: var(--rayon); overflow: hidden; background: var(--rose-pale) }
-.fiche-grande img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover }
-.fiche-vignettes { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap }
-.vignette { padding: 0; border: 2px solid transparent; border-radius: 12px; overflow: hidden; cursor: pointer; background: none; width: 72px }
+.fiche { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); padding: 20px var(--marge) clamp(32px, 5vw, 64px); align-items: start }
+.fiche-photos { position: sticky; top: 100px; background: var(--teinte); padding: 12px; border-radius: calc(var(--rayon) + 6px) }
+.fiche-grande { margin: 0; border-radius: var(--rayon); overflow: hidden; background: #fff }
+.fiche-grande img { width: 100%; aspect-ratio: 1; object-fit: cover }
+.fiche-vignettes { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap }
+.vignette { padding: 0; border: 3px solid transparent; border-radius: 12px; overflow: hidden; cursor: pointer; background: #fff; width: 66px }
 .vignette img { width: 100%; aspect-ratio: 1; object-fit: cover }
 .vignette.actif { border-color: var(--rose) }
 .fiche h1 { font-size: clamp(30px, 3.4vw, 44px); margin: 8px 0 12px }
-.fiche-prix { font-size: 26px; font-weight: 700; margin-bottom: 22px; font-variant-numeric: tabular-nums }
+.fiche-prix { font-size: 28px; font-weight: 800; margin-bottom: 20px; font-variant-numeric: tabular-nums }
 .fiche-paiement { margin-top: 14px; font-size: 14.5px; color: var(--doux) }
 .fiche-description { margin-top: 30px; padding-top: 26px; border-top: 2px dashed var(--trait) }
 .fiche-description p { margin-bottom: 14px; max-width: 62ch }
@@ -146,10 +166,60 @@ section { scroll-margin-top: 90px }
 .points li::before { content: ''; position: absolute; left: 0; top: .8em; width: 12px; border-top: 2px dashed var(--rose) }
 .creations-autres { padding-top: 0 }
 
+/* Fenêtres : choix et panier (feuille du bas sur téléphone) */
+.fenetre { padding: 0; border: 0; border-radius: 26px; width: min(640px, calc(100% - 32px)); max-height: min(88vh, 860px); color: var(--encre); background: #fff; box-shadow: 0 30px 80px rgba(60, 20, 80, .3); overflow: hidden }
+.fenetre[open] { display: flex; flex-direction: column }
+.fenetre::backdrop { background: rgba(61, 38, 73, .45) }
+.fenetre > form, .fenetre > div { display: flex; flex-direction: column; min-height: 0; flex: 1 }
+.fenetre-tete { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: var(--lilas) }
+.fenetre-tete img { width: 58px; height: 58px; border-radius: 14px; object-fit: cover }
+.fenetre-tete h2 { font-size: 20px; font-weight: 600 }
+.fenetre-prix { font-weight: 800 }
+.fermer { margin-left: auto; width: 42px; height: 42px; border-radius: 50%; border: 0; background: #fff; font-size: 26px; line-height: 1; cursor: pointer; color: var(--encre); flex: none }
+.fenetre-corps { padding: 18px; overflow-y: auto; display: grid; gap: 20px; align-content: start }
+.fenetre-corps.vide { text-align: center; justify-items: center; padding: 40px 18px }
+.fenetre fieldset { border: 0; padding: 0; margin: 0; min-width: 0 }
+.fenetre legend, .champ > span { font-family: var(--titre); font-weight: 600; font-size: 18px; margin-bottom: 10px; padding: 0 }
+.fenetre legend small, .champ small { font-family: 'Nunito Sans', sans-serif; font-weight: 400; font-size: 14px; color: var(--doux); margin-left: 6px }
+.aide { font-size: 14.5px; color: var(--doux); margin: -2px 0 10px }
+.choix-pastilles { display: flex; flex-wrap: wrap; gap: 8px }
+.choix-pastille input { position: absolute; opacity: 0; pointer-events: none }
+.choix-pastille span { display: block; padding: 9px 16px; border-radius: 999px; background: var(--lilas); font-weight: 700; font-size: 15px; cursor: pointer; border: 2px solid transparent }
+.choix-pastille input:checked + span { background: var(--encre); color: #fff }
+.choix-pastille input:focus-visible + span { outline: 3px solid var(--bleu); outline-offset: 2px }
+.choix-tissus { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px; max-height: 300px; overflow-y: auto; padding: 4px }
+.tissu { position: relative; padding: 0; border: 3px solid transparent; border-radius: 14px; background: #fff; cursor: pointer; overflow: hidden; font: inherit }
+.tissu img { width: 100%; aspect-ratio: 1; object-fit: cover }
+.tissu span { display: block; font-size: 12.5px; font-weight: 700; color: var(--doux); padding: 2px 0 3px }
+.tissu.choisi { border-color: var(--rose) }
+.tissu.choisi::after { content: '✓'; position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: var(--rose); color: #fff; font-size: 13px; font-weight: 800; display: grid; place-items: center }
+.champ { display: grid; gap: 0 }
+.champ input { font: inherit; font-size: 16px; padding: 13px 16px; border-radius: 14px; border: 2px solid var(--trait); background: #fff; color: var(--encre) }
+.champ input:focus { outline: none; border-color: var(--rose) }
+.fenetre-pied { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-top: 1px solid var(--trait); background: #fff }
+.fenetre-pied .bouton { flex: 1 }
+.fenetre-pied-col { flex-direction: column; align-items: stretch; text-align: center }
+.fenetre-pied-col .aide { margin: 0 }
+.quantite { display: flex; align-items: center; gap: 4px; background: var(--lilas); border-radius: 999px; padding: 4px }
+.quantite button { width: 38px; height: 38px; border-radius: 50%; border: 0; background: #fff; font-size: 20px; cursor: pointer; color: var(--encre) }
+.quantite output { min-width: 24px; text-align: center; font-weight: 800 }
+.ajoute { padding: 36px 24px; text-align: center; display: grid; gap: 10px; justify-items: center }
+.ajoute-coche { width: 64px; height: 64px; border-radius: 50%; background: var(--menthe); color: #1d7a4e; font-size: 32px; display: grid; place-items: center }
+.ajoute h2 { font-size: 26px }
+.ajoute .actions { margin-top: 12px; justify-content: center }
+.lignes { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px }
+.lignes li { display: grid; grid-template-columns: 56px 1fr auto auto; gap: 12px; align-items: center; padding: 10px; border-radius: 16px; background: var(--fond); border: 1.5px solid var(--trait) }
+.lignes img { width: 56px; height: 56px; border-radius: 12px; object-fit: cover }
+.ligne-nom { font-weight: 700; line-height: 1.3 }
+.ligne-details { font-size: 14px; color: var(--doux); line-height: 1.35; margin-top: 2px }
+.ligne-prix { font-weight: 800; white-space: nowrap }
+.retirer { width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--rose-pale); color: var(--rose-fonce); font-size: 18px; cursor: pointer }
+.panier-total { display: flex; justify-content: space-between; font-size: 20px; padding: 4px 4px 0 }
+
 /* Pied */
-.pied { background: var(--encre); color: #e9e3ec; padding: clamp(40px, 6vw, 64px) var(--marge) 24px }
+.pied { background: var(--encre); color: #eee3f3; padding: clamp(40px, 6vw, 64px) var(--marge) 24px }
 .pied-haut { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 32px; align-items: start }
-.pied-nom { font-family: var(--titre); font-size: 26px; color: #fff; margin-bottom: 8px }
+.pied-nom { font-family: var(--main); font-size: 28px; color: #ffd2e4; margin-bottom: 8px }
 .pied nav { display: grid; gap: 8px }
 .pied nav a { text-decoration: none }
 .pied nav a:hover { color: #fff; text-decoration: underline dashed }
@@ -157,29 +227,29 @@ section { scroll-margin-top: 90px }
 .pied-reseaux a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.3) }
 .pied-reseaux a:hover { background: var(--rose); border-color: var(--rose) }
 .pied-reseaux svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linejoin: round }
-.pied-bas { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: 14px; color: #b9b0bf }
+.pied-bas { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: 14px; color: #c7b6cf }
 
-/* Bouton WhatsApp flottant */
+/* Boutons flottants */
 .flottant { position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: #25d366; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.18) }
 .flottant svg { width: 30px; height: 30px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linejoin: round }
+.panier-flottant { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 30; display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; border: 0; background: var(--rose); color: #fff; font: 700 15.5px 'Nunito Sans', sans-serif; cursor: pointer; box-shadow: 0 10px 28px rgba(194, 53, 115, .35); white-space: nowrap }
 
 /* Apparition au défilement */
-.js .revele { opacity: 0; transform: translateY(18px); transition: opacity .6s, transform .6s }
+.js .revele { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s }
 .js .revele.vu { opacity: 1; transform: none }
 
 @media (max-width: 1000px) {
   .hero, .histoire, .fiche { grid-template-columns: 1fr }
   .hero-photo { order: -1 }
-  .hero-photo img { aspect-ratio: 4 / 3 }
   .fiche-photos { position: static }
   .etapes-liste { grid-template-columns: 1fr }
   .pied-haut { grid-template-columns: 1fr }
   .histoire-image { max-width: 520px }
 }
-@media (max-width: 860px) {
-  .tete { gap: 12px }
-  .logo img { height: 56px }
-  .tete-wa { margin-left: auto }
+@media (max-width: 900px) {
+  .tete { gap: 10px }
+  .logo img { height: 58px }
+  .bouton-panier { margin-left: auto }
   .burger { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; padding: 0 }
   .burger span, .burger span::before, .burger span::after { display: block; width: 22px; height: 2px; background: var(--encre); position: relative; content: '' }
   .burger span::before { position: absolute; top: -7px }
@@ -188,18 +258,28 @@ section { scroll-margin-top: 90px }
   .menu.ouvert { display: flex }
   .menu a { padding: 12px 0; font-size: 18px }
 }
-@media (max-width: 560px) {
-  .tete-wa span { display: none }
-  .tete-wa { padding: 10px }
-  .grille { grid-template-columns: repeat(2, 1fr); gap: 14px }
-  .carte h3 { font-size: 16px }
-  .carte-rubrique { font-size: 11px }
+@media (max-width: 600px) {
+  .hero { margin: 4px 10px 0; padding: 18px 16px 26px }
+  .bandeau-noel { margin: 16px 10px 0; font-size: 15px }
+  .grille { grid-template-columns: repeat(2, 1fr); gap: 10px }
+  .carte { padding: 7px }
+  .carte h3 { font-size: 15.5px; margin-bottom: 8px }
+  .carte-rubrique { font-size: 10.5px }
+  .carte-bas { flex-direction: column; align-items: stretch }
+  .carte-bas .bouton { width: 100% }
   .hero-photo::before { inset: 10px -8px -10px 10px }
-  .bandeau-noel { font-size: 15px }
   .main { white-space: normal }
+  .fenetre { width: 100%; max-width: none; max-height: 92vh; margin: auto 0 0; border-radius: 26px 26px 0 0 }
+  .choix-tissus { grid-template-columns: repeat(4, 1fr); max-height: 260px }
+  .lignes li { grid-template-columns: 48px 1fr auto }
+  .lignes img { width: 48px; height: 48px }
+  .retirer { grid-column: 3; grid-row: 1 }
+  .ligne-prix { grid-column: 2 / 4 }
+  body.avec-panier .flottant { bottom: 84px }
+  .panier-flottant { left: 12px; right: 12px; transform: none; justify-content: center }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto }
   .js .revele { opacity: 1; transform: none; transition: none }
-  .carte-photo img, .bandeau-noel .fleche { transition: none }
+  .carte, .bandeau-noel .fleche, .contact-lien { transition: none }
 }

@@ -9,21 +9,21 @@
 <meta property="og:title" content="Mamie Créa — créations bébé personnalisées, brodées au prénom"><meta property="og:description" content="Doudous, protège carnets de santé, gigoteuses, sacs de crèche et coffrets naissance faits main et brodés au prénom, à Vendin-lès-Béthune (62)."><meta property="og:image" content="./photos/hero.webp">
 <link rel="icon" href="./photos/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Grandstander:wght@600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css?v=5">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Mamie Créa","description":"Créations faites main pour bébés et enfants, personnalisées et brodées au prénom : doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets naissance.","telephone":"+33629343054","image":"photos/hero.webp","address":{"@type":"PostalAddress","addressLocality":"Vendin-lès-Béthune","postalCode":"62232","addressRegion":"Pas-de-Calais","addressCountry":"FR"},"sameAs":["https://www.facebook.com/profile.php?id=61575737036183","https://www.instagram.com/mamiecrea62/"]}</script>
 </head>
-<body>
+<body data-racine="./">
 <header class="tete" data-tete>
   <a class="logo" href="./" aria-label="Mamie Créa, accueil"><img src="./photos/logo.webp" alt="Mamie Créa" width="612" height="408"></a>
   <nav class="menu" data-menu aria-label="Menu">
     <a href="./#creations">Créations</a>
-    <a href="./#personnaliser">Personnaliser</a>
+    <a href="./#tissus">Les tissus</a>
+    <a href="./#commander">Comment commander</a>
     <a href="./#histoire">Mon histoire</a>
-    <a href="./#avis">Avis</a>
     <a href="./#contact">Contact</a>
   </nav>
-  <a class="bouton bouton-petit tete-wa" href="https://wa.me/33629343054" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.2c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.5.6c-.1.2-.1.4 0 .6a6 6 0 0 0 2.9 2.6c.2.1.4 0 .5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.3.3.3.5 0 .9-.7 1.8-1.6 1.9-1 .2-2.4-.1-4.2-1.4a10 10 0 0 1-3-3.4c-.6-1.2-.6-2.3-.2-3.1z"/></svg><span>Me contacter</span></a>
+  <button type="button" class="bouton-panier" data-ouvrir-panier aria-label="Voir mon panier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg><span class="pastille-nb" data-nb hidden>0</span></button>
   <button class="burger" data-burger aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button>
 </header>
 <main>
@@ -32,20 +32,15 @@
   <div class="hero-texte">
     <p class="surtitre">Fait main à Vendin-lès-Béthune</p>
     <h1>Des créations brodées <span class="main">au prénom</span> de votre enfant</h1>
-    <p class="hero-chapo">Doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets de naissance : chaque pièce est cousue et brodée à la main, comme si c’était pour mon propre enfant.</p>
+    <p class="hero-chapo">Doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets de naissance : vous choisissez la création, le tissu et le prénom, je couds et je brode.</p>
     <div class="actions">
       <a class="bouton" href="#creations">Voir les créations</a>
-      <a class="bouton bouton-clair" href="https://wa.me/33629343054" rel="noopener">Une idée en tête ? Écrivez-moi</a>
+      <a class="bouton bouton-clair" href="#tissus">Voir les tissus</a>
     </div>
-    <ul class="promesses">
-      <li>Fait main, pièce par pièce</li>
-      <li>Prénom, couleurs, motif au choix</li>
-      <li>Paiement sécurisé</li>
-    </ul>
   </div>
   <figure class="hero-photo">
     <img src="photos/hero.webp" alt="Ensemble bavoir, attache-tétine et couverture brodés au prénom Alya" width="1600" height="1245">
-    <figcaption>Ensemble naissance brodé pour Alya</figcaption>
+    <figcaption>Ensemble naissance pour Alya</figcaption>
   </figure>
 </section>
 
@@ -58,218 +53,343 @@
 <section class="creations" id="creations">
   <div class="titre-section">
     <h2>Les créations</h2>
-    <p>23 créations à personnaliser. Cliquez sur une création pour voir les photos et commander.</p>
+    <p>Appuyez sur « Choisir » : taille, tissu et prénom en quelques secondes.</p>
   </div>
   <div class="filtres" role="toolbar" aria-label="Filtrer les créations" data-filtres>
     <button type="button" class="pastille actif" data-filtre="tout" aria-pressed="true">Tout voir</button>
-    <button type="button" class="pastille" data-filtre="doudous" aria-pressed="false">Doudous & éveil</button>
-    <button type="button" class="pastille" data-filtre="bain" aria-pressed="false">Bain & toilette</button>
-    <button type="button" class="pastille" data-filtre="nuit" aria-pressed="false">Nuit & change</button>
-    <button type="button" class="pastille" data-filtre="sacs" aria-pressed="false">Sacs</button>
-    <button type="button" class="pastille" data-filtre="bapteme" aria-pressed="false">Baptême</button>
-    <button type="button" class="pastille" data-filtre="livrets" aria-pressed="false">Livrets & carnets</button>
-    <button type="button" class="pastille" data-filtre="cadeaux" aria-pressed="false">Cadeaux</button>
-    <button type="button" class="pastille" data-filtre="petits" aria-pressed="false">Moins de 15 €</button>
+    <button type="button" class="pastille pastille-rose" data-filtre="doudous" aria-pressed="false">Doudous & éveil</button>
+    <button type="button" class="pastille pastille-ciel" data-filtre="bain" aria-pressed="false">Bain & toilette</button>
+    <button type="button" class="pastille pastille-lilas" data-filtre="nuit" aria-pressed="false">Nuit & change</button>
+    <button type="button" class="pastille pastille-menthe" data-filtre="sacs" aria-pressed="false">Sacs</button>
+    <button type="button" class="pastille pastille-citron" data-filtre="bapteme" aria-pressed="false">Baptême</button>
+    <button type="button" class="pastille pastille-peche" data-filtre="livrets" aria-pressed="false">Livrets & carnets</button>
+    <button type="button" class="pastille pastille-rose" data-filtre="cadeaux" aria-pressed="false">Cadeaux</button>
+    <button type="button" class="pastille pastille-citron" data-filtre="petits" aria-pressed="false">Moins de 15 €</button>
   </div>
   <div class="grille" data-grille>
-    <article class="carte" data-rubrique="livrets" data-prix="26">
+    <article class="carte teinte-peche" data-rubrique="livrets" data-prix="26">
       <a class="carte-photo" href="./article/protege-carnet-de-sante-and-livret-de-famille-personnalises/"><img src="./photos/protege-carnet-de-sante-and-livret-de-fa-1.webp" alt="Protège carnet de santé &amp; livret de famille, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Livrets & carnets</p>
         <h3><a href="./article/protege-carnet-de-sante-and-livret-de-famille-personnalises/">Protège carnet de santé &amp; livret de famille</a></h3>
-        <p class="carte-prix">26 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">26 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="protege-carnet-de-sante-and-livret-de-famille-personnalises">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="doudous" data-prix="12">
+    <article class="carte teinte-rose" data-rubrique="doudous" data-prix="12">
       <a class="carte-photo" href="./article/doudou-personnalise-brode-un-compagnon-unique-pour-votre-enfant/"><img src="./photos/doudou-personnalise-brode-un-compagnon-u-1.webp" alt="Doudou brodé au prénom, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Doudous & éveil</p>
         <h3><a href="./article/doudou-personnalise-brode-un-compagnon-unique-pour-votre-enfant/">Doudou brodé au prénom</a></h3>
-        <p class="carte-prix">12 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">12 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="doudou-personnalise-brode-un-compagnon-unique-pour-votre-enfant">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="sacs" data-prix="30">
+    <article class="carte teinte-menthe" data-rubrique="sacs" data-prix="30">
       <a class="carte-photo" href="./article/sacs-de-creche-et-d-ecole-personnalisables/"><img src="./photos/sacs-de-creche-et-d-ecole-personnalisabl-1.webp" alt="Sac de crèche et d’école, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Sacs</p>
         <h3><a href="./article/sacs-de-creche-et-d-ecole-personnalisables/">Sac de crèche et d’école</a></h3>
-        <p class="carte-prix">30 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">30 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="sacs-de-creche-et-d-ecole-personnalisables">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="cadeaux" data-prix="12.5">
+    <article class="carte teinte-rose" data-rubrique="cadeaux" data-prix="12.5">
       <a class="carte-photo" href="./article/lutin-farceur-carte-de-bienvenue-en-bois-gravee/"><img src="./photos/lutin-farceur-carte-de-bienvenue-en-bois-1.webp" alt="Lutin farceur et sa carte en bois gravée, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Cadeaux</p>
         <h3><a href="./article/lutin-farceur-carte-de-bienvenue-en-bois-gravee/">Lutin farceur et sa carte en bois gravée</a></h3>
-        <p class="carte-prix">12,50 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">12,50 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="lutin-farceur-carte-de-bienvenue-en-bois-gravee">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="cadeaux" data-prix="60">
+    <article class="carte teinte-rose" data-rubrique="cadeaux" data-prix="60">
       <a class="carte-photo" href="./article/coffret-cadeau-personnalise-une-attention-unique-pour-bebe/"><img src="./photos/coffret-cadeau-personnalise-une-attentio-1.webp" alt="Coffret naissance personnalisé, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Cadeaux</p>
         <h3><a href="./article/coffret-cadeau-personnalise-une-attention-unique-pour-bebe/">Coffret naissance personnalisé</a></h3>
-        <p class="carte-prix"><s>70 €</s> 60 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix"><s>70 €</s> 60 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="coffret-cadeau-personnalise-une-attention-unique-pour-bebe">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="bain" data-prix="40">
+    <article class="carte teinte-ciel" data-rubrique="bain" data-prix="40">
       <a class="carte-photo" href="./article/peignoir-enfant-personnalise-douceur-et-confort-de-1-mois-a-14-ans/"><img src="./photos/peignoir-enfant-personnalise-douceur-et-1.webp" alt="Peignoir personnalisé, de 1 mois à 14 ans, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Bain & toilette</p>
         <h3><a href="./article/peignoir-enfant-personnalise-douceur-et-confort-de-1-mois-a-14-ans/">Peignoir personnalisé, de 1 mois à 14 ans</a></h3>
-        <p class="carte-prix">40 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">40 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="peignoir-enfant-personnalise-douceur-et-confort-de-1-mois-a-14-ans">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="nuit" data-prix="38">
+    <article class="carte teinte-lilas" data-rubrique="nuit" data-prix="38">
       <a class="carte-photo" href="./article/gigoteuse-bebe-douceur-et-confort-pour-les-nuits-de-bebe/"><img src="./photos/gigoteuse-bebe-douceur-et-confort-pour-l-1.webp" alt="Gigoteuse douceur, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Nuit & change</p>
         <h3><a href="./article/gigoteuse-bebe-douceur-et-confort-pour-les-nuits-de-bebe/">Gigoteuse douceur</a></h3>
-        <p class="carte-prix">38 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">38 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="gigoteuse-bebe-douceur-et-confort-pour-les-nuits-de-bebe">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="doudous" data-prix="12">
+    <article class="carte teinte-rose" data-rubrique="doudous" data-prix="12">
       <a class="carte-photo" href="./article/doudous-floques-personnalises/"><img src="./photos/doudous-floques-personnalises-1.webp" alt="Doudou floqué personnalisé, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Doudous & éveil</p>
         <h3><a href="./article/doudous-floques-personnalises/">Doudou floqué personnalisé</a></h3>
-        <p class="carte-prix">12 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">12 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="doudous-floques-personnalises">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="doudous" data-prix="13">
+    <article class="carte teinte-rose" data-rubrique="doudous" data-prix="13">
       <a class="carte-photo" href="./article/hochet-personnalise-un-joli-compagnon-deveil/"><img src="./photos/hochet-personnalise-un-joli-compagnon-de-1.webp" alt="Hochet d’éveil personnalisé, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Doudous & éveil</p>
         <h3><a href="./article/hochet-personnalise-un-joli-compagnon-deveil/">Hochet d’éveil personnalisé</a></h3>
-        <p class="carte-prix">13 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">13 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="hochet-personnalise-un-joli-compagnon-deveil">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="doudous" data-prix="6">
+    <article class="carte teinte-rose" data-rubrique="doudous" data-prix="6">
       <a class="carte-photo" href="./article/hochet-personnalise-avec-ou-sans-bruit-premier-jouet-de-bebe/"><img src="./photos/hochet-personnalise-avec-ou-sans-bruit-p-1.webp" alt="Hochet avec ou sans bruit, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Doudous & éveil</p>
         <h3><a href="./article/hochet-personnalise-avec-ou-sans-bruit-premier-jouet-de-bebe/">Hochet avec ou sans bruit</a></h3>
-        <p class="carte-prix">6 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">6 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="hochet-personnalise-avec-ou-sans-bruit-premier-jouet-de-bebe">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="bapteme" data-prix="18">
+    <article class="carte teinte-citron" data-rubrique="bapteme" data-prix="18">
       <a class="carte-photo" href="./article/chale-de-bapteme-personnalise-une-attention-unique-pour-une-journee-inoubliable/"><img src="./photos/chale-de-bapteme-personnalise-une-attent-1.webp" alt="Châle de baptême personnalisé, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Baptême</p>
         <h3><a href="./article/chale-de-bapteme-personnalise-une-attention-unique-pour-une-journee-inoubliable/">Châle de baptême personnalisé</a></h3>
-        <p class="carte-prix">18 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">18 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="chale-de-bapteme-personnalise-une-attention-unique-pour-une-journee-inoubliable">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="bapteme" data-prix="13">
+    <article class="carte teinte-citron" data-rubrique="bapteme" data-prix="13">
       <a class="carte-photo" href="./article/etole-de-bapteme-personnalisee-elegance-et-emotion/"><img src="./photos/etole-de-bapteme-personnalisee-elegance-1.webp" alt="Étole de baptême personnalisée, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Baptême</p>
         <h3><a href="./article/etole-de-bapteme-personnalisee-elegance-et-emotion/">Étole de baptême personnalisée</a></h3>
-        <p class="carte-prix">13 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">13 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="etole-de-bapteme-personnalisee-elegance-et-emotion">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="bain" data-prix="8">
+    <article class="carte teinte-ciel" data-rubrique="bain" data-prix="8">
       <a class="carte-photo" href="./article/serviette-a-main-personnalisee-broderie-au-prenom/"><img src="./photos/serviette-a-main-personnalisee-broderie-1.webp" alt="Serviette brodée au prénom, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Bain & toilette</p>
         <h3><a href="./article/serviette-a-main-personnalisee-broderie-au-prenom/">Serviette brodée au prénom</a></h3>
-        <p class="carte-prix">8 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">8 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="serviette-a-main-personnalisee-broderie-au-prenom">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="nuit" data-prix="68">
+    <article class="carte teinte-lilas" data-rubrique="nuit" data-prix="68">
       <a class="carte-photo" href="./article/matelas-a-langer-avec-panieres-assorties-un-joli-ensemble-pour-bebe/"><img src="./photos/matelas-a-langer-avec-panieres-assorties-1.webp" alt="Matelas à langer et panières assorties, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Nuit & change</p>
         <h3><a href="./article/matelas-a-langer-avec-panieres-assorties-un-joli-ensemble-pour-bebe/">Matelas à langer et panières assorties</a></h3>
-        <p class="carte-prix">68 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">68 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="matelas-a-langer-avec-panieres-assorties-un-joli-ensemble-pour-bebe">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="nuit" data-prix="33">
+    <article class="carte teinte-lilas" data-rubrique="nuit" data-prix="33">
       <a class="carte-photo" href="./article/gigoteuse/"><img src="./photos/gigoteuse-1.webp" alt="Gigoteuse faite main, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Nuit & change</p>
         <h3><a href="./article/gigoteuse/">Gigoteuse faite main</a></h3>
-        <p class="carte-prix">33 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">33 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="gigoteuse">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="sacs" data-prix="20">
+    <article class="carte teinte-menthe" data-rubrique="sacs" data-prix="20">
       <a class="carte-photo" href="./article/mini-sac-a-langer-pratique-et-compact/"><img src="./photos/mini-sac-a-langer-pratique-et-compact-1.webp" alt="Mini sac à langer, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Sacs</p>
         <h3><a href="./article/mini-sac-a-langer-pratique-et-compact/">Mini sac à langer</a></h3>
-        <p class="carte-prix">20 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">20 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="mini-sac-a-langer-pratique-et-compact">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="sacs" data-prix="50">
+    <article class="carte teinte-menthe" data-rubrique="sacs" data-prix="50">
       <a class="carte-photo" href="./article/sac-a-langer-and-sac-de-voyage-pratique-pour-toutes-vos-escapades/"><img src="./photos/sac-a-langer-and-sac-de-voyage-pratique-1.webp" alt="Sac à langer et de voyage, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Sacs</p>
         <h3><a href="./article/sac-a-langer-and-sac-de-voyage-pratique-pour-toutes-vos-escapades/">Sac à langer et de voyage</a></h3>
-        <p class="carte-prix">50 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">50 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="sac-a-langer-and-sac-de-voyage-pratique-pour-toutes-vos-escapades">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="livrets" data-prix="12">
+    <article class="carte teinte-peche" data-rubrique="livrets" data-prix="12">
       <a class="carte-photo" href="./article/protege-livrets-de-famille-personnalise-famille-recomposee/"><img src="./photos/protege-livrets-de-famille-personnalise-1.webp" alt="Protège-livrets famille recomposée, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Livrets & carnets</p>
         <h3><a href="./article/protege-livrets-de-famille-personnalise-famille-recomposee/">Protège-livrets famille recomposée</a></h3>
-        <p class="carte-prix">12 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">12 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="protege-livrets-de-famille-personnalise-famille-recomposee">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="livrets" data-prix="10">
+    <article class="carte teinte-peche" data-rubrique="livrets" data-prix="10">
       <a class="carte-photo" href="./article/livret-de-famille-2/"><img src="./photos/livret-de-famille-2-1.webp" alt="Housse de livret de famille, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Livrets & carnets</p>
         <h3><a href="./article/livret-de-famille-2/">Housse de livret de famille</a></h3>
-        <p class="carte-prix">10 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">10 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="livret-de-famille-2">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="doudous" data-prix="10">
+    <article class="carte teinte-rose" data-rubrique="doudous" data-prix="10">
       <a class="carte-photo" href="./article/oreiller-en-forme-de-nuage/"><img src="./photos/oreiller-en-forme-de-nuage-1.webp" alt="Oreiller nuage, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Doudous & éveil</p>
         <h3><a href="./article/oreiller-en-forme-de-nuage/">Oreiller nuage</a></h3>
-        <p class="carte-prix">10 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">10 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="oreiller-en-forme-de-nuage">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="cadeaux" data-prix="12">
+    <article class="carte teinte-rose" data-rubrique="cadeaux" data-prix="12">
       <a class="carte-photo" href="./article/culbuto-souvenir-un-petit-cadeau-plein-de-charme/"><img src="./photos/culbuto-souvenir-un-petit-cadeau-plein-d-1.webp" alt="Culbuto souvenir, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Cadeaux</p>
         <h3><a href="./article/culbuto-souvenir-un-petit-cadeau-plein-de-charme/">Culbuto souvenir</a></h3>
-        <p class="carte-prix">12 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">12 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="culbuto-souvenir-un-petit-cadeau-plein-de-charme">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="bain" data-prix="10">
+    <article class="carte teinte-ciel" data-rubrique="bain" data-prix="10">
       <a class="carte-photo" href="./article/lot-de-8-debarbouillettes-cotons-a-demaquiller-reutilisables/"><img src="./photos/lot-de-8-debarbouillettes-cotons-a-demaq-1.webp" alt="8 débarbouillettes lavables, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Bain & toilette</p>
         <h3><a href="./article/lot-de-8-debarbouillettes-cotons-a-demaquiller-reutilisables/">8 débarbouillettes lavables</a></h3>
-        <p class="carte-prix">10 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix">10 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="lot-de-8-debarbouillettes-cotons-a-demaquiller-reutilisables">Choisir</button>
+        </div>
       </div>
     </article>
-    <article class="carte" data-rubrique="bain" data-prix="0.5">
+    <article class="carte teinte-ciel" data-rubrique="bain" data-prix="0.5">
       <a class="carte-photo" href="./article/chouchou-colore-la-petite-touche-qui-fait-plaisir/"><img src="./photos/chouchou-colore-la-petite-touche-qui-fai-1.webp" alt="Chouchou coloré, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
         <p class="carte-rubrique">Bain & toilette</p>
         <h3><a href="./article/chouchou-colore-la-petite-touche-qui-fait-plaisir/">Chouchou coloré</a></h3>
-        <p class="carte-prix"><s>1 €</s> 0,50 €</p>
+        <div class="carte-bas">
+          <p class="carte-prix"><s>1 €</s> 0,50 €</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="chouchou-colore-la-petite-touche-qui-fait-plaisir">Choisir</button>
+        </div>
       </div>
     </article>
   </div>
 </section>
 
-<section class="etapes" id="personnaliser">
+<section class="tissus" id="tissus">
+  <div class="titre-section">
+    <h2>Les tissus</h2>
+    <p>48 tissus au choix pour vos créations : fleuris, animaux, véhicules, unis… Vous les retrouvez en photo au moment de choisir. Le choix peut varier selon les stocks.</p>
+  </div>
+  <div class="tissus-ruban">
+    <figure><img src="photos/tissus/t1.webp" alt="Tissu n°1" loading="lazy" width="220" height="220"><figcaption>n°1</figcaption></figure>
+    <figure><img src="photos/tissus/t2.webp" alt="Tissu n°2" loading="lazy" width="220" height="220"><figcaption>n°2</figcaption></figure>
+    <figure><img src="photos/tissus/t3.webp" alt="Tissu n°3" loading="lazy" width="220" height="220"><figcaption>n°3</figcaption></figure>
+    <figure><img src="photos/tissus/t4.webp" alt="Tissu n°4" loading="lazy" width="220" height="220"><figcaption>n°4</figcaption></figure>
+    <figure><img src="photos/tissus/t5.webp" alt="Tissu n°5" loading="lazy" width="220" height="220"><figcaption>n°5</figcaption></figure>
+    <figure><img src="photos/tissus/t6.webp" alt="Tissu n°6" loading="lazy" width="220" height="220"><figcaption>n°6</figcaption></figure>
+    <figure><img src="photos/tissus/t7.webp" alt="Tissu n°7" loading="lazy" width="220" height="220"><figcaption>n°7</figcaption></figure>
+    <figure><img src="photos/tissus/t8.webp" alt="Tissu n°8" loading="lazy" width="220" height="220"><figcaption>n°8</figcaption></figure>
+    <figure><img src="photos/tissus/t9.webp" alt="Tissu n°9" loading="lazy" width="220" height="220"><figcaption>n°9</figcaption></figure>
+    <figure><img src="photos/tissus/t10.webp" alt="Tissu n°10" loading="lazy" width="220" height="220"><figcaption>n°10</figcaption></figure>
+    <figure><img src="photos/tissus/t11.webp" alt="Tissu n°11" loading="lazy" width="220" height="220"><figcaption>n°11</figcaption></figure>
+    <figure><img src="photos/tissus/t12.webp" alt="Tissu n°12" loading="lazy" width="220" height="220"><figcaption>n°12</figcaption></figure>
+    <figure><img src="photos/tissus/t13.webp" alt="Tissu n°13" loading="lazy" width="220" height="220"><figcaption>n°13</figcaption></figure>
+    <figure><img src="photos/tissus/t14.webp" alt="Tissu n°14" loading="lazy" width="220" height="220"><figcaption>n°14</figcaption></figure>
+    <figure><img src="photos/tissus/t15.webp" alt="Tissu n°15" loading="lazy" width="220" height="220"><figcaption>n°15</figcaption></figure>
+    <figure><img src="photos/tissus/t16.webp" alt="Tissu n°16" loading="lazy" width="220" height="220"><figcaption>n°16</figcaption></figure>
+    <figure><img src="photos/tissus/t17.webp" alt="Tissu n°17" loading="lazy" width="220" height="220"><figcaption>n°17</figcaption></figure>
+    <figure><img src="photos/tissus/t18.webp" alt="Tissu n°18" loading="lazy" width="220" height="220"><figcaption>n°18</figcaption></figure>
+    <figure><img src="photos/tissus/t19.webp" alt="Tissu n°19" loading="lazy" width="220" height="220"><figcaption>n°19</figcaption></figure>
+    <figure><img src="photos/tissus/t20.webp" alt="Tissu n°20" loading="lazy" width="220" height="220"><figcaption>n°20</figcaption></figure>
+    <figure><img src="photos/tissus/t21.webp" alt="Tissu n°21" loading="lazy" width="220" height="220"><figcaption>n°21</figcaption></figure>
+    <figure><img src="photos/tissus/t22.webp" alt="Tissu n°22" loading="lazy" width="220" height="220"><figcaption>n°22</figcaption></figure>
+    <figure><img src="photos/tissus/t23.webp" alt="Tissu n°23" loading="lazy" width="220" height="220"><figcaption>n°23</figcaption></figure>
+    <figure><img src="photos/tissus/t24.webp" alt="Tissu n°24" loading="lazy" width="220" height="220"><figcaption>n°24</figcaption></figure>
+    <figure><img src="photos/tissus/t25.webp" alt="Tissu n°25" loading="lazy" width="220" height="220"><figcaption>n°25</figcaption></figure>
+    <figure><img src="photos/tissus/t26.webp" alt="Tissu n°26" loading="lazy" width="220" height="220"><figcaption>n°26</figcaption></figure>
+    <figure><img src="photos/tissus/t27.webp" alt="Tissu n°27" loading="lazy" width="220" height="220"><figcaption>n°27</figcaption></figure>
+    <figure><img src="photos/tissus/t28.webp" alt="Tissu n°28" loading="lazy" width="220" height="220"><figcaption>n°28</figcaption></figure>
+    <figure><img src="photos/tissus/t29.webp" alt="Tissu n°29" loading="lazy" width="220" height="220"><figcaption>n°29</figcaption></figure>
+    <figure><img src="photos/tissus/t30.webp" alt="Tissu n°30" loading="lazy" width="220" height="220"><figcaption>n°30</figcaption></figure>
+    <figure><img src="photos/tissus/t31.webp" alt="Tissu n°31" loading="lazy" width="220" height="220"><figcaption>n°31</figcaption></figure>
+    <figure><img src="photos/tissus/t32.webp" alt="Tissu n°32" loading="lazy" width="220" height="220"><figcaption>n°32</figcaption></figure>
+    <figure><img src="photos/tissus/t33.webp" alt="Tissu n°33" loading="lazy" width="220" height="220"><figcaption>n°33</figcaption></figure>
+    <figure><img src="photos/tissus/t34.webp" alt="Tissu n°34" loading="lazy" width="220" height="220"><figcaption>n°34</figcaption></figure>
+    <figure><img src="photos/tissus/t35.webp" alt="Tissu n°35" loading="lazy" width="220" height="220"><figcaption>n°35</figcaption></figure>
+    <figure><img src="photos/tissus/t35bis.webp" alt="Tissu n°35 bis" loading="lazy" width="220" height="220"><figcaption>n°35 bis</figcaption></figure>
+    <figure><img src="photos/tissus/t36.webp" alt="Tissu n°36" loading="lazy" width="220" height="220"><figcaption>n°36</figcaption></figure>
+    <figure><img src="photos/tissus/t37.webp" alt="Tissu n°37" loading="lazy" width="220" height="220"><figcaption>n°37</figcaption></figure>
+    <figure><img src="photos/tissus/t38.webp" alt="Tissu n°38" loading="lazy" width="220" height="220"><figcaption>n°38</figcaption></figure>
+    <figure><img src="photos/tissus/t39.webp" alt="Tissu n°39" loading="lazy" width="220" height="220"><figcaption>n°39</figcaption></figure>
+    <figure><img src="photos/tissus/t40.webp" alt="Tissu n°40" loading="lazy" width="220" height="220"><figcaption>n°40</figcaption></figure>
+    <figure><img src="photos/tissus/t41.webp" alt="Tissu n°41" loading="lazy" width="220" height="220"><figcaption>n°41</figcaption></figure>
+    <figure><img src="photos/tissus/t42.webp" alt="Tissu n°42" loading="lazy" width="220" height="220"><figcaption>n°42</figcaption></figure>
+    <figure><img src="photos/tissus/t43.webp" alt="Tissu n°43" loading="lazy" width="220" height="220"><figcaption>n°43</figcaption></figure>
+    <figure><img src="photos/tissus/t44.webp" alt="Tissu n°44" loading="lazy" width="220" height="220"><figcaption>n°44</figcaption></figure>
+    <figure><img src="photos/tissus/t45.webp" alt="Tissu n°45" loading="lazy" width="220" height="220"><figcaption>n°45</figcaption></figure>
+    <figure><img src="photos/tissus/t46.webp" alt="Tissu n°46" loading="lazy" width="220" height="220"><figcaption>n°46</figcaption></figure>
+    <figure><img src="photos/tissus/t47.webp" alt="Tissu n°47" loading="lazy" width="220" height="220"><figcaption>n°47</figcaption></figure>
+  </div>
+</section>
+
+<section class="etapes" id="commander">
   <div class="titre-section">
     <h2>Comment commander</h2>
-    <p>Une création personnalisée, c’est simple, et je réponds à toutes vos questions avant de coudre.</p>
+    <p>Pas de compte à créer, pas de formulaire compliqué.</p>
   </div>
   <ol class="etapes-liste">
-    <li><span class="etape-num">1</span><h3>Choisissez votre création</h3><p>Parcourez les créations et ouvrez celle qui vous plaît pour voir toutes les photos.</p></li>
-    <li><span class="etape-num">2</span><h3>Indiquez le prénom</h3><p>Au moment de commander, précisez le prénom, les couleurs ou le motif souhaités.</p></li>
-    <li><span class="etape-num">3</span><h3>Je couds et je brode</h3><p>Votre création est réalisée à la main. Retrait ou envoi : les options s’affichent au moment du paiement.</p></li>
+    <li><span class="etape-num">1</span><h3>Choisissez</h3><p>La création, la taille, un ou deux tissus en photo, et le prénom à broder.</p></li>
+    <li><span class="etape-num">2</span><h3>Envoyez</h3><p>Votre panier part directement à Sandra sur WhatsApp, avec tous les détails.</p></li>
+    <li><span class="etape-num">3</span><h3>Payez</h3><p>Sandra vous répond et vous envoie son lien de paiement sécurisé SumUp. Retrait à Vendin ou envoi.</p></li>
   </ol>
-  <p class="etapes-note">Un modèle qui n’est pas sur le site, une couleur particulière, un cadeau à composer ? <a href="https://wa.me/33629343054" rel="noopener">Écrivez-moi sur WhatsApp</a>, on en parle.</p>
 </section>
 
 <section class="histoire" id="histoire">
@@ -295,19 +415,18 @@
     <figure class="avis-carte"><blockquote>Merci à Mamie Créa pour ce bel attache-tétine. N’hésitez pas à visiter la page, de très jolies créations.</blockquote><figcaption>Eugénie P.</figcaption></figure>
     <figure class="avis-carte"><blockquote>Je recommande à 100 % !</blockquote><figcaption>Anaïs L.</figcaption></figure>
   </div>
-  <p class="avis-note">Vous avez offert une création Mamie Créa ? Votre avis sur Google m’aide énormément.</p>
 </section>
 
 <section class="contact" id="contact">
   <div class="titre-section">
     <h2>Me contacter</h2>
-    <p>Pour une question, une commande sur mesure ou pour me retrouver sur les marchés et réderies de la région.</p>
+    <p>Pour une question, une création sur mesure, ou pour me retrouver sur les marchés et réderies de la région.</p>
   </div>
   <div class="contact-liens">
-    <a class="contact-lien" href="https://wa.me/33629343054" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.2c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.5.6c-.1.2-.1.4 0 .6a6 6 0 0 0 2.9 2.6c.2.1.4 0 .5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.3.3.3.5 0 .9-.7 1.8-1.6 1.9-1 .2-2.4-.1-4.2-1.4a10 10 0 0 1-3-3.4c-.6-1.2-.6-2.3-.2-3.1z"/></svg><span><small>WhatsApp</small>Écrire un message</span></a>
-    <a class="contact-lien" href="tel:+33629343054"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.3a11 11 0 0 0 5.9 5.9l1.3-2 4.2 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span><small>Téléphone</small>06 29 34 30 54</span></a>
-    <a class="contact-lien" href="https://www.facebook.com/profile.php?id=61575737036183" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2.5V4.5H14c-2.2 0-3.8 1.7-3.8 3.9V10H8v3.5h2.2V21h3.5v-7.5h2.6l.5-3.5h-3.1V8.6c0-.4.2-.6.6-.6z"/></svg><span><small>Facebook</small>Mamie Créa</span></a>
-    <a class="contact-lien" href="https://www.instagram.com/mamiecrea62/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/></svg><span><small>Instagram</small>@mamiecrea62</span></a>
+    <a class="contact-lien teinte-menthe" href="https://wa.me/33629343054" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.2c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.5.6c-.1.2-.1.4 0 .6a6 6 0 0 0 2.9 2.6c.2.1.4 0 .5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.3.3.3.5 0 .9-.7 1.8-1.6 1.9-1 .2-2.4-.1-4.2-1.4a10 10 0 0 1-3-3.4c-.6-1.2-.6-2.3-.2-3.1z"/></svg><span><small>WhatsApp</small>Écrire un message</span></a>
+    <a class="contact-lien teinte-rose" href="tel:+33629343054"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.3a11 11 0 0 0 5.9 5.9l1.3-2 4.2 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span><small>Téléphone</small>06 29 34 30 54</span></a>
+    <a class="contact-lien teinte-ciel" href="https://www.facebook.com/profile.php?id=61575737036183" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2.5V4.5H14c-2.2 0-3.8 1.7-3.8 3.9V10H8v3.5h2.2V21h3.5v-7.5h2.6l.5-3.5h-3.1V8.6c0-.4.2-.6.6-.6z"/></svg><span><small>Facebook</small>Mamie Créa</span></a>
+    <a class="contact-lien teinte-lilas" href="https://www.instagram.com/mamiecrea62/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/></svg><span><small>Instagram</small>@mamiecrea62</span></a>
   </div>
   <p class="contact-lieu">Vendin-lès-Béthune, Pas-de-Calais (62)</p>
 </section>
@@ -320,7 +439,7 @@
     </div>
     <nav aria-label="Liens">
       <a href="./#creations">Les créations</a>
-      <a href="./#personnaliser">Comment commander</a>
+      <a href="./#tissus">Les tissus</a>
       <a href="./#contact">Contact</a>
     </nav>
     <div class="pied-reseaux">
@@ -331,7 +450,13 @@
   </div>
   <p class="pied-bas">© 2026 Mamie Créa · Paiement sécurisé par SumUp</p>
 </footer>
-<a class="flottant" href="https://wa.me/33629343054" rel="noopener" aria-label="Écrire à Mamie Créa sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.2c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.5.6c-.1.2-.1.4 0 .6a6 6 0 0 0 2.9 2.6c.2.1.4 0 .5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.3.3.3.5 0 .9-.7 1.8-1.6 1.9-1 .2-2.4-.1-4.2-1.4a10 10 0 0 1-3-3.4c-.6-1.2-.6-2.3-.2-3.1z"/></svg></a>
-<script src="./app.js?v=3" defer></script>
+
+<button type="button" class="panier-flottant" data-ouvrir-panier hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg><span data-panier-resume>Mon panier</span></button>
+<a class="flottant" href="https://wa.me/33629343054" rel="noopener" aria-label="Écrire à Mamie Créa sur WhatsApp" data-wa-flottant><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.2c.2-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.5.6c-.1.2-.1.4 0 .6a6 6 0 0 0 2.9 2.6c.2.1.4 0 .5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.3.3.3.5 0 .9-.7 1.8-1.6 1.9-1 .2-2.4-.1-4.2-1.4a10 10 0 0 1-3-3.4c-.6-1.2-.6-2.3-.2-3.1z"/></svg></a>
+
+<dialog class="fenetre" data-fenetre aria-labelledby="fenetre-titre"></dialog>
+<dialog class="fenetre fenetre-panier" data-panier aria-labelledby="panier-titre"></dialog>
+<script type="application/json" id="donnees">{"wa":"https://wa.me/33629343054","tissus":[{"n":"1","img":"t1.webp"},{"n":"2","img":"t2.webp"},{"n":"3","img":"t3.webp"},{"n":"4","img":"t4.webp"},{"n":"5","img":"t5.webp"},{"n":"6","img":"t6.webp"},{"n":"7","img":"t7.webp"},{"n":"8","img":"t8.webp"},{"n":"9","img":"t9.webp"},{"n":"10","img":"t10.webp"},{"n":"11","img":"t11.webp"},{"n":"12","img":"t12.webp"},{"n":"13","img":"t13.webp"},{"n":"14","img":"t14.webp"},{"n":"15","img":"t15.webp"},{"n":"16","img":"t16.webp"},{"n":"17","img":"t17.webp"},{"n":"18","img":"t18.webp"},{"n":"19","img":"t19.webp"},{"n":"20","img":"t20.webp"},{"n":"21","img":"t21.webp"},{"n":"22","img":"t22.webp"},{"n":"23","img":"t23.webp"},{"n":"24","img":"t24.webp"},{"n":"25","img":"t25.webp"},{"n":"26","img":"t26.webp"},{"n":"27","img":"t27.webp"},{"n":"28","img":"t28.webp"},{"n":"29","img":"t29.webp"},{"n":"30","img":"t30.webp"},{"n":"31","img":"t31.webp"},{"n":"32","img":"t32.webp"},{"n":"33","img":"t33.webp"},{"n":"34","img":"t34.webp"},{"n":"35","img":"t35.webp"},{"n":"35 bis","img":"t35bis.webp"},{"n":"36","img":"t36.webp"},{"n":"37","img":"t37.webp"},{"n":"38","img":"t38.webp"},{"n":"39","img":"t39.webp"},{"n":"40","img":"t40.webp"},{"n":"41","img":"t41.webp"},{"n":"42","img":"t42.webp"},{"n":"43","img":"t43.webp"},{"n":"44","img":"t44.webp"},{"n":"45","img":"t45.webp"},{"n":"46","img":"t46.webp"},{"n":"47","img":"t47.webp"}],"produits":[{"slug":"protege-carnet-de-sante-and-livret-de-famille-personnalises","nom":"Protège carnet de santé & livret de famille","prix":26,"photo":"protege-carnet-de-sante-and-livret-de-fa-1.webp","tissus":2,"prenom":true},{"slug":"doudou-personnalise-brode-un-compagnon-unique-pour-votre-enfant","nom":"Doudou brodé au prénom","prix":12,"photo":"doudou-personnalise-brode-un-compagnon-u-1.webp","tissus":2,"prenom":true},{"slug":"sacs-de-creche-et-d-ecole-personnalisables","nom":"Sac de crèche et d’école","prix":30,"photo":"sacs-de-creche-et-d-ecole-personnalisabl-1.webp","tissus":2,"prenom":true},{"slug":"lutin-farceur-carte-de-bienvenue-en-bois-gravee","nom":"Lutin farceur et sa carte en bois gravée","prix":12.5,"photo":"lutin-farceur-carte-de-bienvenue-en-bois-1.webp"},{"slug":"coffret-cadeau-personnalise-une-attention-unique-pour-bebe","nom":"Coffret naissance personnalisé","prix":60,"photo":"coffret-cadeau-personnalise-une-attentio-1.webp","tissus":2,"prenom":true},{"slug":"peignoir-enfant-personnalise-douceur-et-confort-de-1-mois-a-14-ans","nom":"Peignoir personnalisé, de 1 mois à 14 ans","prix":40,"photo":"peignoir-enfant-personnalise-douceur-et-1.webp","variantes":["1 mois – 6 ans","7 – 14 ans"],"titreVariante":"Taille","prenom":true},{"slug":"gigoteuse-bebe-douceur-et-confort-pour-les-nuits-de-bebe","nom":"Gigoteuse douceur","prix":38,"photo":"gigoteuse-bebe-douceur-et-confort-pour-l-1.webp","variantes":["0 – 6 mois","6 – 12 mois","12 – 18 mois","18 – 24 mois"],"titreVariante":"Taille","tissus":2,"prenom":true},{"slug":"doudous-floques-personnalises","nom":"Doudou floqué personnalisé","prix":12,"photo":"doudous-floques-personnalises-1.webp","tissus":2,"prenom":true},{"slug":"hochet-personnalise-un-joli-compagnon-deveil","nom":"Hochet d’éveil personnalisé","prix":13,"photo":"hochet-personnalise-un-joli-compagnon-de-1.webp","tissus":2,"prenom":true},{"slug":"hochet-personnalise-avec-ou-sans-bruit-premier-jouet-de-bebe","nom":"Hochet avec ou sans bruit","prix":6,"photo":"hochet-personnalise-avec-ou-sans-bruit-p-1.webp","tissus":2,"prenom":true},{"slug":"chale-de-bapteme-personnalise-une-attention-unique-pour-une-journee-inoubliable","nom":"Châle de baptême personnalisé","prix":18,"photo":"chale-de-bapteme-personnalise-une-attent-1.webp","prenom":"Prénom et date à broder"},{"slug":"etole-de-bapteme-personnalisee-elegance-et-emotion","nom":"Étole de baptême personnalisée","prix":13,"photo":"etole-de-bapteme-personnalisee-elegance-1.webp","prenom":"Prénom et date à broder"},{"slug":"serviette-a-main-personnalisee-broderie-au-prenom","nom":"Serviette brodée au prénom","prix":8,"photo":"serviette-a-main-personnalisee-broderie-1.webp","prenom":true},{"slug":"matelas-a-langer-avec-panieres-assorties-un-joli-ensemble-pour-bebe","nom":"Matelas à langer et panières assorties","prix":68,"photo":"matelas-a-langer-avec-panieres-assorties-1.webp","tissus":2,"prenom":true},{"slug":"gigoteuse","nom":"Gigoteuse faite main","prix":33,"photo":"gigoteuse-1.webp","variantes":["Loup","Lion"],"titreVariante":"Modèle","prenom":true},{"slug":"mini-sac-a-langer-pratique-et-compact","nom":"Mini sac à langer","prix":20,"photo":"mini-sac-a-langer-pratique-et-compact-1.webp","tissus":2,"prenom":true},{"slug":"sac-a-langer-and-sac-de-voyage-pratique-pour-toutes-vos-escapades","nom":"Sac à langer et de voyage","prix":50,"photo":"sac-a-langer-and-sac-de-voyage-pratique-1.webp","tissus":2,"prenom":true},{"slug":"protege-livrets-de-famille-personnalise-famille-recomposee","nom":"Protège-livrets famille recomposée","prix":12,"photo":"protege-livrets-de-famille-personnalise-1.webp","variantes":["1 livret","2 livrets","3 livrets","4 livrets"],"titreVariante":"Nombre de livrets","tissus":2,"prenom":"Prénoms à broder"},{"slug":"livret-de-famille-2","nom":"Housse de livret de famille","prix":10,"photo":"livret-de-famille-2-1.webp","tissus":2,"prenom":true},{"slug":"oreiller-en-forme-de-nuage","nom":"Oreiller nuage","prix":10,"photo":"oreiller-en-forme-de-nuage-1.webp","tissus":2},{"slug":"culbuto-souvenir-un-petit-cadeau-plein-de-charme","nom":"Culbuto souvenir","prix":12,"photo":"culbuto-souvenir-un-petit-cadeau-plein-d-1.webp","tissus":2},{"slug":"lot-de-8-debarbouillettes-cotons-a-demaquiller-reutilisables","nom":"8 débarbouillettes lavables","prix":10,"photo":"lot-de-8-debarbouillettes-cotons-a-demaq-1.webp","variantes":["Savane","Savane 2","Loup","Loutre","Lapin","Gecko"],"titreVariante":"Motif"},{"slug":"chouchou-colore-la-petite-touche-qui-fait-plaisir","nom":"Chouchou coloré","prix":0.5,"photo":"chouchou-colore-la-petite-touche-qui-fai-1.webp","tissus":1}]}</script>
+<script src="./app.js?v=5" defer></script>
 </body>
 </html>

@@ -1,23 +1,45 @@
 // Mamie Créa — aperçu LocWeb. Génère index.html et une page par création (article/<slug>/),
-// aux mêmes adresses que la boutique SumUp actuelle. Paiement : bouton « Commander » vers SumUp.
+// aux mêmes adresses que la boutique SumUp actuelle.
+// Commande : on choisit taille, tissus (en photo) et prénom sur le site, le panier part sur WhatsApp,
+// Sandra répond avec son lien de paiement SumUp.
 //   node build.mjs
 import fs from 'node:fs';
 import path from 'node:path';
 
 const ICI = path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Z]:)/, '$1');
 const P = JSON.parse(fs.readFileSync(path.join(ICI, '_source', 'produits.json'), 'utf8'));
+const TISSUS = JSON.parse(fs.readFileSync(path.join(ICI, '_source', 'tissus.json'), 'utf8'));
 
-// Aujourd'hui la boutique SumUp répond sur mamiecrea.fr. Quand le nouveau site prendra le domaine,
-// la boutique restera sur son adresse SumUp : remplacer par 'https://mamie-crea-62.sumupstore.com/article/'.
-const BOUTIQUE = 'https://mamiecrea.fr/article/';
 const TEL = '06 29 34 30 54', TEL_LIEN = '+33629343054', WA = 'https://wa.me/33629343054';
 const FB = 'https://www.facebook.com/profile.php?id=61575737036183', IG = 'https://www.instagram.com/mamiecrea62/';
-const V = '3';
+const V = '5';
 
 const RUBRIQUES = {
-  doudous: 'Doudous & éveil', bain: 'Bain & toilette', nuit: 'Nuit & change', sacs: 'Sacs',
-  bapteme: 'Baptême', livrets: 'Livrets & carnets', cadeaux: 'Cadeaux',
+  doudous: ['Doudous & éveil', 'rose'], bain: ['Bain & toilette', 'ciel'], nuit: ['Nuit & change', 'lilas'],
+  sacs: ['Sacs', 'menthe'], bapteme: ['Baptême', 'citron'], livrets: ['Livrets & carnets', 'peche'], cadeaux: ['Cadeaux', 'rose'],
 };
+
+// Ce qu'on choisit pour chaque création (repris des options de sa boutique SumUp, en clair).
+const CHOIX = {
+  'peignoir-enfant': { variantes: ['1 mois – 6 ans', '7 – 14 ans'], titreVariante: 'Taille', prenom: true },
+  'protege-livrets-de-famille': { variantes: ['1 livret', '2 livrets', '3 livrets', '4 livrets'], titreVariante: 'Nombre de livrets', tissus: 2, prenom: 'Prénoms à broder' },
+  'chouchou': { tissus: 1 },
+  'gigoteuse-bebe': { variantes: ['0 – 6 mois', '6 – 12 mois', '12 – 18 mois', '18 – 24 mois'], titreVariante: 'Taille', tissus: 2, prenom: true },
+  'gigoteuse': { variantes: ['Loup', 'Lion'], titreVariante: 'Modèle', prenom: true },
+  'lot-de-8': { variantes: ['Savane', 'Savane 2', 'Loup', 'Loutre', 'Lapin', 'Gecko'], titreVariante: 'Motif' },
+  'lutin-farceur': {},
+  'culbuto': { tissus: 2 },
+  'coffret-cadeau': { tissus: 2, prenom: true },
+  'chale-de-bapteme': { prenom: 'Prénom et date à broder' },
+  'etole-de-bapteme': { prenom: 'Prénom et date à broder' },
+  'serviette-a-main': { prenom: true },
+  'oreiller-en-forme': { tissus: 2 },
+};
+const choixDe = (slug) => {
+  const k = Object.keys(CHOIX).filter((x) => slug.startsWith(x)).sort((a, b) => b.length - a.length)[0];
+  return k ? CHOIX[k] : { tissus: 2, prenom: true };
+};
+
 const AVIS = [
   ['Camille L.', 'Si vous cherchez une créatrice d’objets personnalisés dans le coin, je vous recommande Mamie Créa. Une personne à l’écoute de vos besoins, avec du choix et de très bons conseils.'],
   ['Nathalie M.', 'Personne très à l’écoute. Vous conseille également quand vous avez un doute. Très bon travail, je vous la recommande pour vos projets à venir. Et d’une gentillesse…'],
@@ -48,8 +70,15 @@ const ICONES = {
   tel: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.3a11 11 0 0 0 5.9 5.9l1.3-2 4.2 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg>',
   fb: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2.5V4.5H14c-2.2 0-3.8 1.7-3.8 3.9V10H8v3.5h2.2V21h3.5v-7.5h2.6l.5-3.5h-3.1V8.6c0-.4.2-.6.6-.6z"/></svg>',
   ig: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/></svg>',
-  fil: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20c4-1 6-5 8-8s4-6 8-7"/><circle cx="19.5" cy="5" r="1.5"/></svg>',
+  panier: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg>',
 };
+
+// Données pour la fenêtre de choix et le panier (app.js).
+const DONNEES = JSON.stringify({
+  wa: WA,
+  tissus: TISSUS,
+  produits: P.map((p) => ({ slug: p.slug, nom: p.nom, prix: p.prix, photo: p.photos[0], ...choixDe(p.slug) })),
+}).replace(/</g, '\\u003c');
 
 function page({ titre, description, racine, corps, ld = [] }) {
   return `<!doctype html>
@@ -63,21 +92,21 @@ function page({ titre, description, racine, corps, ld = [] }) {
 <meta property="og:title" content="${esc(titre)}"><meta property="og:description" content="${esc(description)}"><meta property="og:image" content="${racine}photos/hero.webp">
 <link rel="icon" href="${racine}photos/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Grandstander:wght@600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Pacifico&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${racine}style.css?v=${V}">
 ${ld.map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
 </head>
-<body>
+<body data-racine="${racine}">
 <header class="tete" data-tete>
   <a class="logo" href="${racine}" aria-label="Mamie Créa, accueil"><img src="${racine}photos/logo.webp" alt="Mamie Créa" width="612" height="408"></a>
   <nav class="menu" data-menu aria-label="Menu">
     <a href="${racine}#creations">Créations</a>
-    <a href="${racine}#personnaliser">Personnaliser</a>
+    <a href="${racine}#tissus">Les tissus</a>
+    <a href="${racine}#commander">Comment commander</a>
     <a href="${racine}#histoire">Mon histoire</a>
-    <a href="${racine}#avis">Avis</a>
     <a href="${racine}#contact">Contact</a>
   </nav>
-  <a class="bouton bouton-petit tete-wa" href="${WA}" rel="noopener">${ICONES.wa}<span>Me contacter</span></a>
+  <button type="button" class="bouton-panier" data-ouvrir-panier aria-label="Voir mon panier">${ICONES.panier}<span class="pastille-nb" data-nb hidden>0</span></button>
   <button class="burger" data-burger aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button>
 </header>
 <main>
@@ -91,7 +120,7 @@ ${corps}
     </div>
     <nav aria-label="Liens">
       <a href="${racine}#creations">Les créations</a>
-      <a href="${racine}#personnaliser">Comment commander</a>
+      <a href="${racine}#tissus">Les tissus</a>
       <a href="${racine}#contact">Contact</a>
     </nav>
     <div class="pied-reseaux">
@@ -102,22 +131,34 @@ ${corps}
   </div>
   <p class="pied-bas">© 2026 Mamie Créa · Paiement sécurisé par SumUp</p>
 </footer>
-<a class="flottant" href="${WA}" rel="noopener" aria-label="Écrire à Mamie Créa sur WhatsApp">${ICONES.wa}</a>
+
+<button type="button" class="panier-flottant" data-ouvrir-panier hidden>${ICONES.panier}<span data-panier-resume>Mon panier</span></button>
+<a class="flottant" href="${WA}" rel="noopener" aria-label="Écrire à Mamie Créa sur WhatsApp" data-wa-flottant>${ICONES.wa}</a>
+
+<dialog class="fenetre" data-fenetre aria-labelledby="fenetre-titre"></dialog>
+<dialog class="fenetre fenetre-panier" data-panier aria-labelledby="panier-titre"></dialog>
+<script type="application/json" id="donnees">${DONNEES}</script>
 <script src="${racine}app.js?v=${V}" defer></script>
 </body>
 </html>
 `;
 }
 
-const carte = (p, racine) => `
-    <article class="carte" data-rubrique="${p.rubrique}" data-prix="${p.prix}">
+const carte = (p, racine) => {
+  const [rub, teinte] = RUBRIQUES[p.rubrique];
+  return `
+    <article class="carte teinte-${teinte}" data-rubrique="${p.rubrique}" data-prix="${p.prix}">
       <a class="carte-photo" href="${racine}article/${p.slug}/"><img src="${racine}photos/${p.photos[0]}" alt="${esc(p.nom)}, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
-        <p class="carte-rubrique">${RUBRIQUES[p.rubrique]}</p>
+        <p class="carte-rubrique">${rub}</p>
         <h3><a href="${racine}article/${p.slug}/">${esc(p.nom)}</a></h3>
-        <p class="carte-prix">${p.ancien ? `<s>${prix(p.ancien)}</s> ` : ''}${prix(p.prix)}</p>
+        <div class="carte-bas">
+          <p class="carte-prix">${p.ancien ? `<s>${prix(p.ancien)}</s> ` : ''}${prix(p.prix)}</p>
+          <button type="button" class="bouton bouton-petit" data-choisir="${p.slug}">Choisir</button>
+        </div>
       </div>
     </article>`;
+};
 
 const ldMagasin = {
   '@context': 'https://schema.org', '@type': 'Store', name: 'Mamie Créa',
@@ -139,20 +180,15 @@ const accueil = page({
   <div class="hero-texte">
     <p class="surtitre">Fait main à Vendin-lès-Béthune</p>
     <h1>Des créations brodées <span class="main">au prénom</span> de votre enfant</h1>
-    <p class="hero-chapo">Doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets de naissance : chaque pièce est cousue et brodée à la main, comme si c’était pour mon propre enfant.</p>
+    <p class="hero-chapo">Doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets de naissance : vous choisissez la création, le tissu et le prénom, je couds et je brode.</p>
     <div class="actions">
       <a class="bouton" href="#creations">Voir les créations</a>
-      <a class="bouton bouton-clair" href="${WA}" rel="noopener">Une idée en tête ? Écrivez-moi</a>
+      <a class="bouton bouton-clair" href="#tissus">Voir les tissus</a>
     </div>
-    <ul class="promesses">
-      <li>Fait main, pièce par pièce</li>
-      <li>Prénom, couleurs, motif au choix</li>
-      <li>Paiement sécurisé</li>
-    </ul>
   </div>
   <figure class="hero-photo">
     <img src="photos/hero.webp" alt="Ensemble bavoir, attache-tétine et couverture brodés au prénom Alya" width="1600" height="1245">
-    <figcaption>Ensemble naissance brodé pour Alya</figcaption>
+    <figcaption>Ensemble naissance pour Alya</figcaption>
   </figure>
 </section>
 
@@ -165,28 +201,37 @@ const accueil = page({
 <section class="creations" id="creations">
   <div class="titre-section">
     <h2>Les créations</h2>
-    <p>${P.length} créations à personnaliser. Cliquez sur une création pour voir les photos et commander.</p>
+    <p>Appuyez sur « Choisir » : taille, tissu et prénom en quelques secondes.</p>
   </div>
   <div class="filtres" role="toolbar" aria-label="Filtrer les créations" data-filtres>
     <button type="button" class="pastille actif" data-filtre="tout" aria-pressed="true">Tout voir</button>
-    ${Object.entries(RUBRIQUES).filter(([k]) => P.some((p) => p.rubrique === k)).map(([k, v]) => `<button type="button" class="pastille" data-filtre="${k}" aria-pressed="false">${v}</button>`).join('\n    ')}
-    <button type="button" class="pastille" data-filtre="petits" aria-pressed="false">Moins de 15 €</button>
+    ${Object.entries(RUBRIQUES).filter(([k]) => P.some((p) => p.rubrique === k)).map(([k, [v, t]]) => `<button type="button" class="pastille pastille-${t}" data-filtre="${k}" aria-pressed="false">${v}</button>`).join('\n    ')}
+    <button type="button" class="pastille pastille-citron" data-filtre="petits" aria-pressed="false">Moins de 15 €</button>
   </div>
   <div class="grille" data-grille>${P.map((p) => carte(p, './')).join('')}
   </div>
 </section>
 
-<section class="etapes" id="personnaliser">
+<section class="tissus" id="tissus">
+  <div class="titre-section">
+    <h2>Les tissus</h2>
+    <p>${TISSUS.length} tissus au choix pour vos créations : fleuris, animaux, véhicules, unis… Vous les retrouvez en photo au moment de choisir. Le choix peut varier selon les stocks.</p>
+  </div>
+  <div class="tissus-ruban">
+    ${TISSUS.map((t) => `<figure><img src="photos/tissus/${t.img}" alt="Tissu n°${t.n}" loading="lazy" width="220" height="220"><figcaption>n°${t.n}</figcaption></figure>`).join('\n    ')}
+  </div>
+</section>
+
+<section class="etapes" id="commander">
   <div class="titre-section">
     <h2>Comment commander</h2>
-    <p>Une création personnalisée, c’est simple, et je réponds à toutes vos questions avant de coudre.</p>
+    <p>Pas de compte à créer, pas de formulaire compliqué.</p>
   </div>
   <ol class="etapes-liste">
-    <li><span class="etape-num">1</span><h3>Choisissez votre création</h3><p>Parcourez les créations et ouvrez celle qui vous plaît pour voir toutes les photos.</p></li>
-    <li><span class="etape-num">2</span><h3>Indiquez le prénom</h3><p>Au moment de commander, précisez le prénom, les couleurs ou le motif souhaités.</p></li>
-    <li><span class="etape-num">3</span><h3>Je couds et je brode</h3><p>Votre création est réalisée à la main. Retrait ou envoi : les options s’affichent au moment du paiement.</p></li>
+    <li><span class="etape-num">1</span><h3>Choisissez</h3><p>La création, la taille, un ou deux tissus en photo, et le prénom à broder.</p></li>
+    <li><span class="etape-num">2</span><h3>Envoyez</h3><p>Votre panier part directement à Sandra sur WhatsApp, avec tous les détails.</p></li>
+    <li><span class="etape-num">3</span><h3>Payez</h3><p>Sandra vous répond et vous envoie son lien de paiement sécurisé SumUp. Retrait à Vendin ou envoi.</p></li>
   </ol>
-  <p class="etapes-note">Un modèle qui n’est pas sur le site, une couleur particulière, un cadeau à composer ? <a href="${WA}" rel="noopener">Écrivez-moi sur WhatsApp</a>, on en parle.</p>
 </section>
 
 <section class="histoire" id="histoire">
@@ -208,19 +253,18 @@ const accueil = page({
   <div class="avis-grille">
     ${AVIS.map(([n, t]) => `<figure class="avis-carte"><blockquote>${esc(t)}</blockquote><figcaption>${esc(n)}</figcaption></figure>`).join('\n    ')}
   </div>
-  <p class="avis-note">Vous avez offert une création Mamie Créa ? Votre avis sur Google m’aide énormément.</p>
 </section>
 
 <section class="contact" id="contact">
   <div class="titre-section">
     <h2>Me contacter</h2>
-    <p>Pour une question, une commande sur mesure ou pour me retrouver sur les marchés et réderies de la région.</p>
+    <p>Pour une question, une création sur mesure, ou pour me retrouver sur les marchés et réderies de la région.</p>
   </div>
   <div class="contact-liens">
-    <a class="contact-lien" href="${WA}" rel="noopener">${ICONES.wa}<span><small>WhatsApp</small>Écrire un message</span></a>
-    <a class="contact-lien" href="tel:${TEL_LIEN}">${ICONES.tel}<span><small>Téléphone</small>${TEL}</span></a>
-    <a class="contact-lien" href="${FB}" rel="noopener">${ICONES.fb}<span><small>Facebook</small>Mamie Créa</span></a>
-    <a class="contact-lien" href="${IG}" rel="noopener">${ICONES.ig}<span><small>Instagram</small>@mamiecrea62</span></a>
+    <a class="contact-lien teinte-menthe" href="${WA}" rel="noopener">${ICONES.wa}<span><small>WhatsApp</small>Écrire un message</span></a>
+    <a class="contact-lien teinte-rose" href="tel:${TEL_LIEN}">${ICONES.tel}<span><small>Téléphone</small>${TEL}</span></a>
+    <a class="contact-lien teinte-ciel" href="${FB}" rel="noopener">${ICONES.fb}<span><small>Facebook</small>Mamie Créa</span></a>
+    <a class="contact-lien teinte-lilas" href="${IG}" rel="noopener">${ICONES.ig}<span><small>Instagram</small>@mamiecrea62</span></a>
   </div>
   <p class="contact-lieu">Vendin-lès-Béthune, Pas-de-Calais (62)</p>
 </section>`,
@@ -230,15 +274,15 @@ const accueil = page({
 const pages = [['index.html', accueil]];
 for (const p of P) {
   const autres = P.filter((x) => x.rubrique === p.rubrique && x.slug !== p.slug).concat(P.filter((x) => x.rubrique !== p.rubrique)).slice(0, 4);
-  const description = p.texte[0].slice(0, 155);
+  const [rub, teinte] = RUBRIQUES[p.rubrique];
   pages.push([`article/${p.slug}/index.html`, page({
     titre: `${p.nom} — Mamie Créa`,
-    description,
+    description: p.texte[0].slice(0, 155),
     racine: '../../',
     ld: [{
       '@context': 'https://schema.org', '@type': 'Product', name: p.titre, description: p.texte.join(' '),
       image: p.photos.map((f) => `../../photos/${f}`), brand: { '@type': 'Brand', name: 'Mamie Créa' },
-      offers: { '@type': 'Offer', price: p.prix.toFixed(2), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: BOUTIQUE + p.slug },
+      offers: { '@type': 'Offer', price: p.prix.toFixed(2), priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
     }, {
       '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Créations', item: '../../#creations' },
@@ -246,21 +290,18 @@ for (const p of P) {
       ],
     }],
     corps: `
-<nav class="fil" aria-label="Fil d’Ariane"><a href="../../#creations">Créations</a> <span aria-hidden="true">›</span> ${RUBRIQUES[p.rubrique]}</nav>
+<nav class="fil" aria-label="Fil d’Ariane"><a href="../../#creations">Créations</a> <span aria-hidden="true">›</span> ${rub}</nav>
 <section class="fiche">
-  <div class="fiche-photos" data-galerie>
+  <div class="fiche-photos teinte-${teinte}" data-galerie>
     <figure class="fiche-grande"><img src="../../photos/${p.photos[0]}" alt="${esc(p.nom)}" data-grande></figure>
     ${p.photos.length > 1 ? `<div class="fiche-vignettes">${p.photos.map((f, i) => `<button type="button" class="vignette${i ? '' : ' actif'}" data-photo="../../photos/${f}" aria-label="Photo ${i + 1}"><img src="../../photos/${f}" alt="" loading="lazy"></button>`).join('')}</div>` : ''}
   </div>
   <div class="fiche-texte">
-    <p class="carte-rubrique">${RUBRIQUES[p.rubrique]}</p>
+    <p class="carte-rubrique">${rub}</p>
     <h1>${esc(p.nom)}</h1>
     <p class="fiche-prix">${p.ancien ? `<s>${prix(p.ancien)}</s> ` : ''}${prix(p.prix)}</p>
-    <div class="actions">
-      <a class="bouton" href="${BOUTIQUE}${p.slug}" rel="noopener">Commander</a>
-      <a class="bouton bouton-clair" href="${WA}?text=${encodeURIComponent(`Bonjour, une question sur : ${p.nom}`)}" rel="noopener">${ICONES.wa}<span>Poser une question</span></a>
-    </div>
-    <p class="fiche-paiement">Prénom et couleurs se précisent au moment de commander. Paiement sécurisé par SumUp.</p>
+    <button type="button" class="bouton bouton-grand" data-choisir="${p.slug}">Choisir et ajouter au panier</button>
+    <p class="fiche-paiement">Taille, tissu et prénom se choisissent à l’étape suivante. Paiement sécurisé SumUp, par lien envoyé par Sandra.</p>
     <div class="fiche-description">${texte(p.texte)}</div>
   </div>
 </section>
