@@ -5,6 +5,8 @@
 //   node build.mjs
 import fs from 'node:fs';
 import path from 'node:path';
+import { createRequire } from 'node:module';
+const dessinerChaine = createRequire(import.meta.url)('./chaine.js');
 
 const ICI = path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Z]:)/, '$1');
 const P = JSON.parse(fs.readFileSync(path.join(ICI, '_source', 'produits.json'), 'utf8'));
@@ -12,9 +14,10 @@ const TISSUS = JSON.parse(fs.readFileSync(path.join(ICI, '_source', 'tissus.json
 
 const TEL = '06 29 34 30 54', TEL_LIEN = '+33629343054', WA = 'https://wa.me/33629343054';
 const FB = 'https://www.facebook.com/profile.php?id=61575737036183', IG = 'https://www.instagram.com/mamiecrea62/';
-const V = '6';
+const V = '9';
 
 const RUBRIQUES = {
+  attaches: ['Attaches-tétines', 'peche'],
   doudous: ['Doudous & éveil', 'rose'], bain: ['Bain & toilette', 'ciel'], nuit: ['Nuit & change', 'lilas'],
   sacs: ['Sacs', 'menthe'], bapteme: ['Baptême', 'citron'], livrets: ['Livrets & carnets', 'peche'], cadeaux: ['Cadeaux', 'rose'],
 };
@@ -80,7 +83,7 @@ const DONNEES = JSON.stringify({
   produits: P.map((p) => ({ slug: p.slug, nom: p.nom, prix: p.prix, photo: p.photos[0], ...choixDe(p.slug) })),
 }).replace(/</g, '\\u003c');
 
-function page({ titre, description, racine, corps, ld = [] }) {
+function page({ titre, description, racine, corps, ld = [], scripts = [] }) {
   return `<!doctype html>
 <html lang="fr">
 <head>
@@ -138,7 +141,7 @@ ${corps}
 <dialog class="fenetre" data-fenetre aria-labelledby="fenetre-titre"></dialog>
 <dialog class="fenetre fenetre-panier" data-panier aria-labelledby="panier-titre"></dialog>
 <script type="application/json" id="donnees">${DONNEES}</script>
-<script src="${racine}app.js?v=${V}" defer></script>
+${scripts.map((f) => `<script src="${racine}${f}?v=${V}" defer></script>`).join('')}<script src="${racine}app.js?v=${V}" defer></script>
 </body>
 </html>
 `;
@@ -175,12 +178,13 @@ const accueil = page({
   description: 'Doudous, protège carnets de santé, gigoteuses, sacs de crèche et coffrets naissance faits main et brodés au prénom, à Vendin-lès-Béthune (62).',
   racine: './',
   ld: [ldMagasin],
+  scripts: ['chaine.js', 'atelier.js'],
   corps: `
 <section class="hero">
   <div class="hero-texte">
     <p class="surtitre">Fait main à Vendin-lès-Béthune</p>
     <h1>Des créations brodées <span class="main">au prénom</span> de votre enfant</h1>
-    <p class="hero-chapo">Doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets de naissance : vous choisissez la création, le tissu et le prénom, je couds et je brode.</p>
+    <p class="hero-chapo">Attaches-tétines, doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets de naissance : vous choisissez la création, le tissu et le prénom, je couds et je brode.</p>
     <div class="actions">
       <a class="bouton" href="#creations">Voir les créations</a>
       <a class="bouton bouton-clair" href="#tissus">Voir les tissus</a>
@@ -198,6 +202,56 @@ const accueil = page({
   <span class="fleche" aria-hidden="true">→</span>
 </a>
 
+
+<section class="atelier" id="atelier" data-atelier>
+  <div class="titre-section">
+    <h2>Composez votre attache-tétine</h2>
+    <p>Choisissez l’attache, vos perles une par une et le prénom : votre attache-tétine se dessine sous vos yeux.</p>
+  </div>
+  <p class="demo-bandeau"><b>Démonstration</b> Les perles et les attaches ci-dessous sont des exemples. Les vraies perles de Mamie Créa, en photo, arrivent très bientôt.</p>
+  <div class="atelier-grille">
+    <div class="atelier-apercu">
+      <div class="apercu-chaine" data-apercu-chaine></div>
+      <p class="atelier-compte" data-compte></p>
+      <div class="atelier-outils">
+        <button type="button" class="pastille" data-annuler>Retirer la dernière perle</button>
+        <button type="button" class="pastille" data-effacer>Tout effacer</button>
+        <button type="button" class="pastille pastille-rose" data-exemple>Voir un exemple</button>
+      </div>
+    </div>
+    <div class="atelier-etapes">
+      <fieldset>
+        <legend><span class="etape-mini">1</span> L’attache</legend>
+        <div class="attaches">
+          ${[['bois', 'Bois'], ['silicone', 'Silicone'], ['metal', 'Métal']].map(([k, n], i) => `<button type="button" class="attache${i ? '' : ' actif'}" data-attache="${k}" aria-pressed="${!i}"><span class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><small>Photo à venir</small></span><b>${n}</b></button>`).join('')}
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span class="etape-mini">2</span> Les perles <small>touchez une perle pour l’ajouter</small></legend>
+        <div class="choix-pastilles formes">
+          ${[['ronde', 'Rondes'], ['hexagone', 'Hexagones'], ['lentille', 'Lentilles'], ['bois', 'Bois']].map(([k, n], i) => `<button type="button" class="pastille${i ? '' : ' actif'}" data-forme="${k}" aria-pressed="${!i}">${n}</button>`).join('')}
+        </div>
+        <div class="nuancier" data-nuancier></div>
+      </fieldset>
+      <label class="champ">
+        <span><span class="etape-mini">3</span> Le prénom en perles-lettres <small>10 lettres au plus</small></span>
+        <input name="prenom-perles" maxlength="10" autocomplete="off" placeholder="Ex. : Alya">
+      </label>
+      <div class="atelier-bas">
+        <p class="carte-prix-venir">Prix à venir</p>
+        <button type="button" class="bouton bouton-grand" data-commander-atelier>Ajouter au panier</button>
+      </div>
+      <p class="note-apercu" data-note-atelier hidden><b>Aperçu :</b> dès que Sandra aura envoyé ses perles et ses prix, ce bouton ajoutera votre attache-tétine au panier, avec sa composition perle par perle.</p>
+    </div>
+  </div>
+  <div class="a-venir">
+    <h3>Les perles de Mamie Créa</h3>
+    <div class="a-venir-grille">
+      ${['Perles rondes', 'Hexagones', 'Lentilles', 'Perles en bois', 'Perles-lettres', 'Motifs : cœurs, étoiles…', 'Attaches', 'Attaches-tétines réalisées'].map((n) => `<figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>${n}<small>Photo à venir</small></figcaption></figure>`).join('')}
+    </div>
+  </div>
+</section>
+
 <section class="creations" id="creations">
   <div class="titre-section">
     <h2>Les créations</h2>
@@ -208,7 +262,18 @@ const accueil = page({
     ${Object.entries(RUBRIQUES).filter(([k]) => P.some((p) => p.rubrique === k)).map(([k, [v, t]]) => `<button type="button" class="pastille pastille-${t}" data-filtre="${k}" aria-pressed="false">${v}</button>`).join('\n    ')}
     <button type="button" class="pastille pastille-citron" data-filtre="petits" aria-pressed="false">Moins de 15 €</button>
   </div>
-  <div class="grille" data-grille>${P.map((p) => carte(p, './')).join('')}
+  <div class="grille" data-grille>
+    <article class="carte teinte-peche" data-rubrique="attaches" data-prix="NaN">
+      <a class="carte-photo carte-a-venir" href="#atelier"><img src="photos/attache-exemple.svg" alt="Illustration d’une attache-tétine personnalisée" loading="lazy"><span class="etiquette-venir">Photo à venir</span></a>
+      <div class="carte-corps">
+        <p class="carte-rubrique">Attaches-tétines</p>
+        <h3><a href="#atelier">Attache-tétine à composer</a></h3>
+        <div class="carte-bas">
+          <p class="carte-prix carte-prix-venir">Prix à venir</p>
+          <a class="bouton bouton-petit" href="#atelier">Composer</a>
+        </div>
+      </div>
+    </article>${P.map((p) => carte(p, './')).join('')}
   </div>
 </section>
 
@@ -317,6 +382,13 @@ fs.rmSync(path.join(ICI, 'article'), { recursive: true, force: true });
 for (const [f, html] of pages) {
   fs.mkdirSync(path.dirname(path.join(ICI, f)), { recursive: true });
   fs.writeFileSync(path.join(ICI, f), html);
+}
+{
+  const ch = dessinerChaine({ attache: 'bois', prenom: 'Alya', perles: [['ronde', '#f2b8c6'], ['hexagone', '#c9b3ef'], ['bois'], ['lentille', '#e0498a'], ['ronde', '#ffffff'], ['hexagone', '#c9b3ef']].map(([forme, couleur]) => ({ forme, couleur })) });
+  const vb = ch.match(/viewBox="0 0 (\d+(?:\.\d+)?) 80"/)[1];
+  const h = 360 * 80 / vb;
+  fs.writeFileSync(path.join(ICI, 'photos', 'attache-exemple.svg'), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#ffe9dc"/><circle cx="70" cy="80" r="6" fill="#fff"/><circle cx="330" cy="320" r="9" fill="#f2b8c6"/><circle cx="345" cy="70" r="5" fill="#c9b3ef"/>` +
+    ch.replace('<svg xmlns="http://www.w3.org/2000/svg"', `<svg x="20" y="${(400 - h) / 2}" width="360" height="${h}"`) + '</svg>');
 }
 fs.writeFileSync(path.join(ICI, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 console.log(pages.length, 'pages');

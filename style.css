@@ -236,11 +236,60 @@ section { scroll-margin-top: 90px }
 .flottant svg { width: 30px; height: 30px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linejoin: round }
 .panier-flottant { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 30; display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; border: 0; background: var(--rose); color: #fff; font: 700 15.5px 'Nunito Sans', sans-serif; cursor: pointer; box-shadow: 0 10px 28px rgba(194, 53, 115, .35); white-space: nowrap }
 
+
+/* Atelier attache-tétine (démonstration) */
+.atelier { margin: clamp(40px, 6vw, 72px) var(--marge) 0; padding: clamp(28px, 4.5vw, 56px); border-radius: calc(var(--rayon) + 10px); background: var(--peche) }
+.demo-bandeau { margin: -8px 0 24px; padding: 12px 16px; border-radius: 16px; background: #fff; border: 2px dashed #f0b48f; font-size: 15px }
+.demo-bandeau b { font-family: var(--titre); color: #c0602b; margin-right: 6px }
+.atelier-grille { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(20px, 3vw, 40px); align-items: start }
+.atelier-apercu { position: sticky; top: 100px; background: #fff; border-radius: var(--rayon); padding: clamp(16px, 3vw, 28px) }
+.apercu-chaine { min-height: 120px; display: grid; place-items: center; background: radial-gradient(circle at 20% 30%, #fff3ea 0 30%, transparent 31%), var(--rose-pale); border-radius: 16px; padding: 24px 14px }
+.apercu-chaine svg { width: 100%; max-height: 150px; height: auto }
+.atelier-compte { margin: 12px 0; font-weight: 700; color: var(--doux); text-align: center }
+.atelier-outils { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center }
+.atelier-outils .pastille { background: var(--lilas); font-size: 14px }
+.atelier-outils .pastille-rose { background: var(--rose-pale) }
+.atelier-etapes { display: grid; gap: 22px }
+.atelier fieldset { border: 0; padding: 0; margin: 0; min-width: 0 }
+.atelier legend, .atelier .champ > span { font-family: var(--titre); font-weight: 600; font-size: 19px; margin-bottom: 10px; padding: 0 }
+.atelier legend small, .atelier .champ small { font-family: 'Nunito Sans', sans-serif; font-weight: 400; font-size: 14px; color: var(--doux); margin-left: 6px }
+.etape-mini { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 2px dashed var(--rose); color: var(--rose); font-size: 14px; margin-right: 6px; vertical-align: 2px }
+.attaches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px }
+.attache { min-width: 0; font: inherit; padding: 8px; border-radius: 16px; border: 3px solid transparent; background: #fff; cursor: pointer; display: grid; gap: 6px; text-align: center; color: var(--encre) }
+.attache.actif { border-color: var(--rose) }
+.attache .photo-a-venir { aspect-ratio: 4 / 3 }
+.formes { margin-bottom: 12px }
+.formes .pastille { background: #fff }
+.formes .pastille.actif { background: var(--encre) }
+.nuancier { display: grid; grid-template-columns: repeat(auto-fill, minmax(68px, 1fr)); gap: 8px }
+.perle-choix { font: inherit; border: 0; background: #fff; border-radius: 14px; padding: 8px 4px 6px; cursor: pointer; display: grid; justify-items: center; gap: 2px; color: var(--encre); transition: transform .15s }
+.perle-choix:hover { transform: translateY(-2px) }
+.perle-choix:active { transform: scale(.94) }
+.perle-svg svg { height: 32px; width: auto }
+.perle-choix small { font-size: 11.5px; font-weight: 700; color: var(--doux); line-height: 1.2 }
+.atelier .champ input { font: inherit; font-size: 16px; padding: 13px 16px; border-radius: 14px; border: 2px solid transparent; background: #fff; color: var(--encre) }
+.atelier .champ input:focus { outline: none; border-color: var(--rose) }
+.atelier-bas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap }
+.atelier-bas .bouton { flex: 1 }
+.carte-prix-venir { font-weight: 700; color: var(--doux); font-size: 15px }
+.photo-a-venir { margin: 0; display: grid; place-items: center; align-content: center; gap: 4px; background: repeating-linear-gradient(45deg, #fff 0 10px, #fff7f1 10px 20px); border: 2px dashed #f0b48f; border-radius: 12px; color: #c0602b; text-align: center; padding: 8px }
+.photo-a-venir svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round }
+.photo-a-venir small { display: block; font-size: 11.5px; font-weight: 700 }
+.a-venir { margin-top: clamp(28px, 4vw, 44px) }
+.a-venir h3 { font-size: 22px; margin-bottom: 14px; font-weight: 600 }
+.a-venir-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px }
+.a-venir-grille .photo-a-venir { aspect-ratio: 1 }
+.a-venir-grille figcaption { font-weight: 700; font-size: 14px; color: var(--encre) }
+.carte-a-venir { position: relative }
+.etiquette-venir { position: absolute; left: 8px; bottom: 8px; background: #fff; border: 1.5px dashed #f0b48f; color: #c0602b; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px }
+
 /* Apparition au défilement */
 .js .revele { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s }
 .js .revele.vu { opacity: 1; transform: none }
 
 @media (max-width: 1000px) {
+  .atelier-grille { grid-template-columns: 1fr }
+  .atelier-apercu { position: sticky; top: 72px; z-index: 5; box-shadow: 0 10px 24px rgba(110,60,130,.12) }
   .hero, .histoire, .fiche { grid-template-columns: 1fr }
   .hero-photo { order: -1 }
   .fiche-photos { position: static }
@@ -261,6 +310,12 @@ section { scroll-margin-top: 90px }
   .menu a { padding: 12px 0; font-size: 18px }
 }
 @media (max-width: 600px) {
+  .atelier { margin: 32px 10px 0; padding: 18px 14px }
+  .apercu-chaine { min-height: 80px; padding: 14px 8px }
+  .atelier-outils .pastille { font-size: 13px; padding: 6px 12px }
+  .nuancier { grid-template-columns: repeat(4, minmax(0, 1fr)) }
+  .attache { padding: 5px }
+  .attache .photo-a-venir small { font-size: 10.5px }
   .hero { margin: 4px 10px 0; padding: 18px 16px 26px }
   .bandeau-noel { margin: 16px 10px 0; font-size: 15px }
   .grille { grid-template-columns: repeat(2, 1fr); gap: 10px }

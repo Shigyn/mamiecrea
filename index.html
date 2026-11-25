@@ -10,7 +10,7 @@
 <link rel="icon" href="./photos/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Pacifico&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css?v=6">
+<link rel="stylesheet" href="./style.css?v=9">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Mamie Créa","description":"Créations faites main pour bébés et enfants, personnalisées et brodées au prénom : doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets naissance.","telephone":"+33629343054","image":"photos/hero.webp","address":{"@type":"PostalAddress","addressLocality":"Vendin-lès-Béthune","postalCode":"62232","addressRegion":"Pas-de-Calais","addressCountry":"FR"},"sameAs":["https://www.facebook.com/profile.php?id=61575737036183","https://www.instagram.com/mamiecrea62/"]}</script>
 </head>
 <body data-racine="./">
@@ -32,7 +32,7 @@
   <div class="hero-texte">
     <p class="surtitre">Fait main à Vendin-lès-Béthune</p>
     <h1>Des créations brodées <span class="main">au prénom</span> de votre enfant</h1>
-    <p class="hero-chapo">Doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets de naissance : vous choisissez la création, le tissu et le prénom, je couds et je brode.</p>
+    <p class="hero-chapo">Attaches-tétines, doudous, protège carnets de santé, gigoteuses, sacs de crèche, coffrets de naissance : vous choisissez la création, le tissu et le prénom, je couds et je brode.</p>
     <div class="actions">
       <a class="bouton" href="#creations">Voir les créations</a>
       <a class="bouton bouton-clair" href="#tissus">Voir les tissus</a>
@@ -49,6 +49,56 @@
   <span><b>Noël approche</b> Le lutin farceur arrive avec sa carte de bienvenue gravée, 12,50 €.</span>
   <span class="fleche" aria-hidden="true">→</span>
 </a>
+
+
+<section class="atelier" id="atelier" data-atelier>
+  <div class="titre-section">
+    <h2>Composez votre attache-tétine</h2>
+    <p>Choisissez l’attache, vos perles une par une et le prénom : votre attache-tétine se dessine sous vos yeux.</p>
+  </div>
+  <p class="demo-bandeau"><b>Démonstration</b> Les perles et les attaches ci-dessous sont des exemples. Les vraies perles de Mamie Créa, en photo, arrivent très bientôt.</p>
+  <div class="atelier-grille">
+    <div class="atelier-apercu">
+      <div class="apercu-chaine" data-apercu-chaine></div>
+      <p class="atelier-compte" data-compte></p>
+      <div class="atelier-outils">
+        <button type="button" class="pastille" data-annuler>Retirer la dernière perle</button>
+        <button type="button" class="pastille" data-effacer>Tout effacer</button>
+        <button type="button" class="pastille pastille-rose" data-exemple>Voir un exemple</button>
+      </div>
+    </div>
+    <div class="atelier-etapes">
+      <fieldset>
+        <legend><span class="etape-mini">1</span> L’attache</legend>
+        <div class="attaches">
+          <button type="button" class="attache actif" data-attache="bois" aria-pressed="true"><span class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><small>Photo à venir</small></span><b>Bois</b></button><button type="button" class="attache" data-attache="silicone" aria-pressed="false"><span class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><small>Photo à venir</small></span><b>Silicone</b></button><button type="button" class="attache" data-attache="metal" aria-pressed="false"><span class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><small>Photo à venir</small></span><b>Métal</b></button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span class="etape-mini">2</span> Les perles <small>touchez une perle pour l’ajouter</small></legend>
+        <div class="choix-pastilles formes">
+          <button type="button" class="pastille actif" data-forme="ronde" aria-pressed="true">Rondes</button><button type="button" class="pastille" data-forme="hexagone" aria-pressed="false">Hexagones</button><button type="button" class="pastille" data-forme="lentille" aria-pressed="false">Lentilles</button><button type="button" class="pastille" data-forme="bois" aria-pressed="false">Bois</button>
+        </div>
+        <div class="nuancier" data-nuancier></div>
+      </fieldset>
+      <label class="champ">
+        <span><span class="etape-mini">3</span> Le prénom en perles-lettres <small>10 lettres au plus</small></span>
+        <input name="prenom-perles" maxlength="10" autocomplete="off" placeholder="Ex. : Alya">
+      </label>
+      <div class="atelier-bas">
+        <p class="carte-prix-venir">Prix à venir</p>
+        <button type="button" class="bouton bouton-grand" data-commander-atelier>Ajouter au panier</button>
+      </div>
+      <p class="note-apercu" data-note-atelier hidden><b>Aperçu :</b> dès que Sandra aura envoyé ses perles et ses prix, ce bouton ajoutera votre attache-tétine au panier, avec sa composition perle par perle.</p>
+    </div>
+  </div>
+  <div class="a-venir">
+    <h3>Les perles de Mamie Créa</h3>
+    <div class="a-venir-grille">
+      <figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>Perles rondes<small>Photo à venir</small></figcaption></figure><figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>Hexagones<small>Photo à venir</small></figcaption></figure><figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>Lentilles<small>Photo à venir</small></figcaption></figure><figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>Perles en bois<small>Photo à venir</small></figcaption></figure><figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>Perles-lettres<small>Photo à venir</small></figcaption></figure><figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>Motifs : cœurs, étoiles…<small>Photo à venir</small></figcaption></figure><figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>Attaches<small>Photo à venir</small></figcaption></figure><figure class="photo-a-venir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><figcaption>Attaches-tétines réalisées<small>Photo à venir</small></figcaption></figure>
+    </div>
+  </div>
+</section>
 
 <section class="creations" id="creations">
   <div class="titre-section">
@@ -67,6 +117,17 @@
     <button type="button" class="pastille pastille-citron" data-filtre="petits" aria-pressed="false">Moins de 15 €</button>
   </div>
   <div class="grille" data-grille>
+    <article class="carte teinte-peche" data-rubrique="attaches" data-prix="NaN">
+      <a class="carte-photo carte-a-venir" href="#atelier"><img src="photos/attache-exemple.svg" alt="Illustration d’une attache-tétine personnalisée" loading="lazy"><span class="etiquette-venir">Photo à venir</span></a>
+      <div class="carte-corps">
+        <p class="carte-rubrique">Attaches-tétines</p>
+        <h3><a href="#atelier">Attache-tétine à composer</a></h3>
+        <div class="carte-bas">
+          <p class="carte-prix carte-prix-venir">Prix à venir</p>
+          <a class="bouton bouton-petit" href="#atelier">Composer</a>
+        </div>
+      </div>
+    </article>
     <article class="carte teinte-peche" data-rubrique="livrets" data-prix="26">
       <a class="carte-photo" href="./article/protege-carnet-de-sante-and-livret-de-famille-personnalises/"><img src="./photos/protege-carnet-de-sante-and-livret-de-fa-1.webp" alt="Protège carnet de santé &amp; livret de famille, Mamie Créa" loading="lazy"></a>
       <div class="carte-corps">
@@ -457,6 +518,6 @@
 <dialog class="fenetre" data-fenetre aria-labelledby="fenetre-titre"></dialog>
 <dialog class="fenetre fenetre-panier" data-panier aria-labelledby="panier-titre"></dialog>
 <script type="application/json" id="donnees">{"wa":"https://wa.me/33629343054","tissus":[{"n":"1","img":"t1.webp"},{"n":"2","img":"t2.webp"},{"n":"3","img":"t3.webp"},{"n":"4","img":"t4.webp"},{"n":"5","img":"t5.webp"},{"n":"6","img":"t6.webp"},{"n":"7","img":"t7.webp"},{"n":"8","img":"t8.webp"},{"n":"9","img":"t9.webp"},{"n":"10","img":"t10.webp"},{"n":"11","img":"t11.webp"},{"n":"12","img":"t12.webp"},{"n":"13","img":"t13.webp"},{"n":"14","img":"t14.webp"},{"n":"15","img":"t15.webp"},{"n":"16","img":"t16.webp"},{"n":"17","img":"t17.webp"},{"n":"18","img":"t18.webp"},{"n":"19","img":"t19.webp"},{"n":"20","img":"t20.webp"},{"n":"21","img":"t21.webp"},{"n":"22","img":"t22.webp"},{"n":"23","img":"t23.webp"},{"n":"24","img":"t24.webp"},{"n":"25","img":"t25.webp"},{"n":"26","img":"t26.webp"},{"n":"27","img":"t27.webp"},{"n":"28","img":"t28.webp"},{"n":"29","img":"t29.webp"},{"n":"30","img":"t30.webp"},{"n":"31","img":"t31.webp"},{"n":"32","img":"t32.webp"},{"n":"33","img":"t33.webp"},{"n":"34","img":"t34.webp"},{"n":"35","img":"t35.webp"},{"n":"35 bis","img":"t35bis.webp"},{"n":"36","img":"t36.webp"},{"n":"37","img":"t37.webp"},{"n":"38","img":"t38.webp"},{"n":"39","img":"t39.webp"},{"n":"40","img":"t40.webp"},{"n":"41","img":"t41.webp"},{"n":"42","img":"t42.webp"},{"n":"43","img":"t43.webp"},{"n":"44","img":"t44.webp"},{"n":"45","img":"t45.webp"},{"n":"46","img":"t46.webp"},{"n":"47","img":"t47.webp"}],"produits":[{"slug":"protege-carnet-de-sante-and-livret-de-famille-personnalises","nom":"Protège carnet de santé & livret de famille","prix":26,"photo":"protege-carnet-de-sante-and-livret-de-fa-1.webp","tissus":2,"prenom":true},{"slug":"doudou-personnalise-brode-un-compagnon-unique-pour-votre-enfant","nom":"Doudou brodé au prénom","prix":12,"photo":"doudou-personnalise-brode-un-compagnon-u-1.webp","tissus":2,"prenom":true},{"slug":"sacs-de-creche-et-d-ecole-personnalisables","nom":"Sac de crèche et d’école","prix":30,"photo":"sacs-de-creche-et-d-ecole-personnalisabl-1.webp","tissus":2,"prenom":true},{"slug":"lutin-farceur-carte-de-bienvenue-en-bois-gravee","nom":"Lutin farceur et sa carte en bois gravée","prix":12.5,"photo":"lutin-farceur-carte-de-bienvenue-en-bois-1.webp"},{"slug":"coffret-cadeau-personnalise-une-attention-unique-pour-bebe","nom":"Coffret naissance personnalisé","prix":60,"photo":"coffret-cadeau-personnalise-une-attentio-1.webp","tissus":2,"prenom":true},{"slug":"peignoir-enfant-personnalise-douceur-et-confort-de-1-mois-a-14-ans","nom":"Peignoir personnalisé, de 1 mois à 14 ans","prix":40,"photo":"peignoir-enfant-personnalise-douceur-et-1.webp","variantes":["1 mois – 6 ans","7 – 14 ans"],"titreVariante":"Taille","prenom":true},{"slug":"gigoteuse-bebe-douceur-et-confort-pour-les-nuits-de-bebe","nom":"Gigoteuse douceur","prix":38,"photo":"gigoteuse-bebe-douceur-et-confort-pour-l-1.webp","variantes":["0 – 6 mois","6 – 12 mois","12 – 18 mois","18 – 24 mois"],"titreVariante":"Taille","tissus":2,"prenom":true},{"slug":"doudous-floques-personnalises","nom":"Doudou floqué personnalisé","prix":12,"photo":"doudous-floques-personnalises-1.webp","tissus":2,"prenom":true},{"slug":"hochet-personnalise-un-joli-compagnon-deveil","nom":"Hochet d’éveil personnalisé","prix":13,"photo":"hochet-personnalise-un-joli-compagnon-de-1.webp","tissus":2,"prenom":true},{"slug":"hochet-personnalise-avec-ou-sans-bruit-premier-jouet-de-bebe","nom":"Hochet avec ou sans bruit","prix":6,"photo":"hochet-personnalise-avec-ou-sans-bruit-p-1.webp","tissus":2,"prenom":true},{"slug":"chale-de-bapteme-personnalise-une-attention-unique-pour-une-journee-inoubliable","nom":"Châle de baptême personnalisé","prix":18,"photo":"chale-de-bapteme-personnalise-une-attent-1.webp","prenom":"Prénom et date à broder"},{"slug":"etole-de-bapteme-personnalisee-elegance-et-emotion","nom":"Étole de baptême personnalisée","prix":13,"photo":"etole-de-bapteme-personnalisee-elegance-1.webp","prenom":"Prénom et date à broder"},{"slug":"serviette-a-main-personnalisee-broderie-au-prenom","nom":"Serviette brodée au prénom","prix":8,"photo":"serviette-a-main-personnalisee-broderie-1.webp","prenom":true},{"slug":"matelas-a-langer-avec-panieres-assorties-un-joli-ensemble-pour-bebe","nom":"Matelas à langer et panières assorties","prix":68,"photo":"matelas-a-langer-avec-panieres-assorties-1.webp","tissus":2,"prenom":true},{"slug":"gigoteuse","nom":"Gigoteuse faite main","prix":33,"photo":"gigoteuse-1.webp","variantes":["Loup","Lion"],"titreVariante":"Modèle","prenom":true},{"slug":"mini-sac-a-langer-pratique-et-compact","nom":"Mini sac à langer","prix":20,"photo":"mini-sac-a-langer-pratique-et-compact-1.webp","tissus":2,"prenom":true},{"slug":"sac-a-langer-and-sac-de-voyage-pratique-pour-toutes-vos-escapades","nom":"Sac à langer et de voyage","prix":50,"photo":"sac-a-langer-and-sac-de-voyage-pratique-1.webp","tissus":2,"prenom":true},{"slug":"protege-livrets-de-famille-personnalise-famille-recomposee","nom":"Protège-livrets famille recomposée","prix":12,"photo":"protege-livrets-de-famille-personnalise-1.webp","variantes":["1 livret","2 livrets","3 livrets","4 livrets"],"titreVariante":"Nombre de livrets","tissus":2,"prenom":"Prénoms à broder"},{"slug":"livret-de-famille-2","nom":"Housse de livret de famille","prix":10,"photo":"livret-de-famille-2-1.webp","tissus":2,"prenom":true},{"slug":"oreiller-en-forme-de-nuage","nom":"Oreiller nuage","prix":10,"photo":"oreiller-en-forme-de-nuage-1.webp","tissus":2},{"slug":"culbuto-souvenir-un-petit-cadeau-plein-de-charme","nom":"Culbuto souvenir","prix":12,"photo":"culbuto-souvenir-un-petit-cadeau-plein-d-1.webp","tissus":2},{"slug":"lot-de-8-debarbouillettes-cotons-a-demaquiller-reutilisables","nom":"8 débarbouillettes lavables","prix":10,"photo":"lot-de-8-debarbouillettes-cotons-a-demaq-1.webp","variantes":["Savane","Savane 2","Loup","Loutre","Lapin","Gecko"],"titreVariante":"Motif"},{"slug":"chouchou-colore-la-petite-touche-qui-fait-plaisir","nom":"Chouchou coloré","prix":0.5,"photo":"chouchou-colore-la-petite-touche-qui-fai-1.webp","tissus":1}]}</script>
-<script src="./app.js?v=6" defer></script>
+<script src="./chaine.js?v=9" defer></script><script src="./atelier.js?v=9" defer></script><script src="./app.js?v=9" defer></script>
 </body>
 </html>
