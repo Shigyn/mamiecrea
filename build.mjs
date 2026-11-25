@@ -1,7 +1,7 @@
 // Mamie Créa — aperçu LocWeb. Génère index.html et une page par création (article/<slug>/),
 // aux mêmes adresses que la boutique SumUp actuelle.
-// Commande : on choisit taille, tissus (en photo) et prénom sur le site, le panier part sur WhatsApp,
-// Sandra répond avec son lien de paiement SumUp.
+// Commande : on choisit taille, tissus (en photo) et prénom sur le site, puis on paie le panier sur la page
+// SumUp de Mamie Créa (à brancher sur son compte SumUp à la livraison ; dans l'aperçu, le bouton Payer l'explique).
 //   node build.mjs
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,7 +12,7 @@ const TISSUS = JSON.parse(fs.readFileSync(path.join(ICI, '_source', 'tissus.json
 
 const TEL = '06 29 34 30 54', TEL_LIEN = '+33629343054', WA = 'https://wa.me/33629343054';
 const FB = 'https://www.facebook.com/profile.php?id=61575737036183', IG = 'https://www.instagram.com/mamiecrea62/';
-const V = '5';
+const V = '6';
 
 const RUBRIQUES = {
   doudous: ['Doudous & éveil', 'rose'], bain: ['Bain & toilette', 'ciel'], nuit: ['Nuit & change', 'lilas'],
@@ -225,12 +225,12 @@ const accueil = page({
 <section class="etapes" id="commander">
   <div class="titre-section">
     <h2>Comment commander</h2>
-    <p>Pas de compte à créer, pas de formulaire compliqué.</p>
+    <p>Pas de compte à créer : vous choisissez, vous payez, c’est parti.</p>
   </div>
   <ol class="etapes-liste">
     <li><span class="etape-num">1</span><h3>Choisissez</h3><p>La création, la taille, un ou deux tissus en photo, et le prénom à broder.</p></li>
-    <li><span class="etape-num">2</span><h3>Envoyez</h3><p>Votre panier part directement à Sandra sur WhatsApp, avec tous les détails.</p></li>
-    <li><span class="etape-num">3</span><h3>Payez</h3><p>Sandra vous répond et vous envoie son lien de paiement sécurisé SumUp. Retrait à Vendin ou envoi.</p></li>
+    <li><span class="etape-num">2</span><h3>Payez en ligne</h3><p>Paiement sécurisé par carte sur la page SumUp de Mamie Créa. Retrait à Vendin ou envoi par la Poste.</p></li>
+    <li><span class="etape-num">3</span><h3>Je couds et je brode</h3><p>Je reçois votre commande avec le tissu et le prénom, et je vous préviens quand elle est prête ou envoyée.</p></li>
   </ol>
 </section>
 
@@ -301,7 +301,7 @@ for (const p of P) {
     <h1>${esc(p.nom)}</h1>
     <p class="fiche-prix">${p.ancien ? `<s>${prix(p.ancien)}</s> ` : ''}${prix(p.prix)}</p>
     <button type="button" class="bouton bouton-grand" data-choisir="${p.slug}">Choisir et ajouter au panier</button>
-    <p class="fiche-paiement">Taille, tissu et prénom se choisissent à l’étape suivante. Paiement sécurisé SumUp, par lien envoyé par Sandra.</p>
+    <p class="fiche-paiement">Taille, tissu et prénom se choisissent à l’étape suivante. Paiement sécurisé par carte avec SumUp.</p>
     <div class="fiche-description">${texte(p.texte)}</div>
   </div>
 </section>

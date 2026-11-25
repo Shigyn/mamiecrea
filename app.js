@@ -124,8 +124,9 @@
         '<div class="fenetre-corps vide"><p>Votre panier est vide.</p><a class="bouton" href="' + R + '#creations" data-fermer>Voir les créations</a></div>';
       return;
     }
-    var nom = '', mode = 'Retrait à Vendin-lès-Béthune';
-    try { nom = localStorage.getItem('mamiecrea-nom') || ''; } catch (e) {}
+    var moi = {};
+    try { moi = JSON.parse(localStorage.getItem('mamiecrea-client')) || {}; } catch (e) {}
+    var v = function (k) { return esc(moi[k] || ''); };
     dp.innerHTML = '<form class="panier" data-envoi>' +
       '<div class="fenetre-tete"><h2 id="panier-titre">Mon panier</h2><button type="button" class="fermer" data-fermer aria-label="Fermer">×</button></div>' +
       '<div class="fenetre-corps"><ul class="lignes">' + panier.map(function (l, i) {
@@ -133,27 +134,42 @@
           (details(l) ? '<p class="ligne-details">' + esc(details(l)) + '</p>' : '') + '</div><p class="ligne-prix">' + euros(l.prix * l.qte) + '</p>' +
           '<button type="button" class="retirer" data-retirer="' + i + '" aria-label="Retirer ' + esc(l.nom) + '">×</button></li>';
       }).join('') + '</ul>' +
-      '<p class="panier-total"><span>Total</span><b>' + euros(total()) + '</b></p>' +
+      '<p class="panier-total"><span>Total</span><b data-total>' + euros(total()) + '</b></p>' +
       '<fieldset><legend>Retrait ou envoi</legend><div class="choix-pastilles">' +
       ['Retrait à Vendin-lès-Béthune', 'Envoi par la Poste'].map(function (m, i) {
-        return '<label class="choix-pastille"><input type="radio" name="mode" value="' + m + '"' + (i ? '' : ' checked') + '><span>' + m + '</span></label>';
-      }).join('') + '</div><p class="aide">Pour un envoi, Sandra vous indique les frais de port.</p></fieldset>' +
-      '<label class="champ"><span>Votre prénom et nom</span><input name="nom" required maxlength="80" autocomplete="name" value="' + esc(nom) + '"></label>' +
-      '</div><div class="fenetre-pied fenetre-pied-col"><button type="submit" class="bouton bouton-grand bouton-wa">Envoyer ma commande à Sandra</button>' +
-      '<p class="aide">Votre commande part sur WhatsApp. Sandra vous répond avec le lien de paiement sécurisé SumUp.</p></div></form>';
+        return '<label class="choix-pastille"><input type="radio" name="mode" value="' + m + '"' + ((moi.mode ? moi.mode === m : !i) ? ' checked' : '') + '><span>' + m + '</span></label>';
+      }).join('') + '</div><p class="aide" data-aide-mode></p></fieldset>' +
+      '<div class="champs-deux"><label class="champ"><span>Prénom et nom</span><input name="nom" required maxlength="80" autocomplete="name" value="' + v('nom') + '"></label>' +
+      '<label class="champ"><span>Téléphone</span><input name="tel" type="tel" required maxlength="20" autocomplete="tel" value="' + v('tel') + '"></label></div>' +
+      '<label class="champ"><span>E-mail <small>pour le reçu</small></span><input name="email" type="email" required maxlength="120" autocomplete="email" value="' + v('email') + '"></label>' +
+      '<label class="champ" data-adresse hidden><span>Adresse de livraison</span><input name="adresse" maxlength="200" autocomplete="street-address" placeholder="N°, rue, code postal, ville" value="' + v('adresse') + '"></label>' +
+      '<p class="note-apercu" data-apercu hidden></p>' +
+      '</div><div class="fenetre-pied fenetre-pied-col"><button type="submit" class="bouton bouton-grand"><span>Payer ' + euros(total()) + '</span></button>' +
+      '<p class="aide">Paiement sécurisé par carte bancaire sur la page SumUp de Mamie Créa. Sandra reçoit votre commande avec tous les détails.</p></div></form>';
+    majMode();
   }
+  function majMode() {
+    var f = $('[data-envoi]', dp); if (!f) return;
+    var envoi = f.mode.value === 'Envoi par la Poste';
+    $('[data-adresse]', f).hidden = !envoi; f.adresse.required = envoi;
+    $('[data-aide-mode]', f).textContent = envoi ? 'Les frais de port sont ajoutés au paiement.' : 'Sandra vous prévient quand votre création est prête.';
+  }
+  dp.addEventListener('change', function (e) { if (e.target.name === 'mode') majMode(); });
   dp.addEventListener('click', function (e) {
     var r = e.target.closest('[data-retirer]');
     if (r) { panier.splice(+r.getAttribute('data-retirer'), 1); garder(); afficherPanier(); }
   });
   dp.addEventListener('submit', function (e) {
     e.preventDefault();
-    var f = e.target, nom = f.nom.value.trim(), mode = f.mode.value;
-    try { localStorage.setItem('mamiecrea-nom', nom); } catch (x) {}
-    var txt = 'Bonjour Sandra, voici ma commande Mamie Créa :\n\n' + panier.map(function (l, i) {
-      return (i + 1) + ') ' + l.nom + (l.qte > 1 ? ' × ' + l.qte : '') + ' : ' + euros(l.prix * l.qte) + (details(l) ? '\n   ' + details(l) : '');
-    }).join('\n') + '\n\nTotal : ' + euros(total()) + (mode === 'Envoi par la Poste' ? ' + frais de port' : '') + '\n' + mode + '\n\n' + nom;
-    window.open(D.wa + '?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+    var f = e.target, moi = { mode: f.mode.value, nom: f.nom.value.trim(), tel: f.tel.value.trim(), email: f.email.value.trim(), adresse: f.adresse.value.trim() };
+    try { localStorage.setItem('mamiecrea-client', JSON.stringify(moi)); } catch (x) {}
+    // Sur le vrai site : création du paiement SumUp au montant du panier (fonction serveur, clé SumUp de Mamie Créa),
+    // puis ouverture de la page de paiement sécurisée ; la commande détaillée part chez Sandra une fois payée.
+    var n = $('[data-apercu]', f);
+    n.hidden = false;
+    n.innerHTML = '<b>Aperçu :</b> sur votre vrai site, ce bouton ouvre ici la page de paiement sécurisée SumUp de Mamie Créa, au montant de ' + euros(total()) +
+      '. Une fois payé, Sandra reçoit la commande : ' + panier.map(function (l) { return esc(l.nom) + (details(l) ? ' (' + esc(details(l)) + ')' : ''); }).join(', ') + '.';
+    n.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   });
 
   document.addEventListener('click', function (e) {
